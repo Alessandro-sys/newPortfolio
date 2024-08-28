@@ -1,0 +1,201 @@
+*{
+    border: 0;
+    margin: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+/*  HOME  */
+/*#############################################################################*/
+
+.title{
+    width: 100%;
+    height: 100vh;
+    background-image: url(/static/images/title.png);
+    background-size: cover;
+    background-position: center;
+
+}
+
+.name{
+    width: 100%;
+    padding-top: 130px;
+    text-align: center;
+}
+
+.name h1{
+    color: white;
+    font-size: 50px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
+}
+
+.name h2{
+    padding-top: 5px;
+    color: white;
+    font-size: 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
+}
+
+.socials{
+    padding-top: 15px;
+    width: 100%;
+    max-height: 48px;
+    text-align: center;
+}
+
+.socials a{
+    display: inline-block;
+    text-align: center;
+    padding-left: 5px; padding-right: 5px;
+    width: 48px;
+    height:48px;
+}
+
+.socials a:hover{
+    opacity: 70%;
+}
+
+.socials img{
+    transform: translate(0, 50%);
+    width: 24px;
+    height: 24px;
+}
+
+.aboutme{
+    padding-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.aboutme button{
+    text-decoration: none;
+    color: rgb(20, 20, 20);
+    font-size: 15px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    padding: 15px;
+    border-radius: 1rem;
+    pointer-events: unset;
+}
+
+.aboutme button:hover{
+    opacity: 70%;
+    cursor: pointer;
+}
+
+
+/* ABOUT */
+/*#############################################################################*/
+
+
+.about{
+    height: 100vh;
+    width: 100%;
+    background-image: url(/static/images/about.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.abouttextfull{
+    width: 50%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    align-items: flex-start; /* Cambia align-items a flex-start per allineare a sinistra */
+    justify-content: center; /* Aggiungi justify-content per centrare verticalmente il contenuto */
+    flex-direction: column; /* Dispone gli elementi in colonna */
+    padding-left: 70px; /* Sposta il margine sinistro in padding */
+}
+
+.abouttextfull h1{
+    color: white;
+    font-size: 50px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
+}
+
+.abouttextfull p{
+    color: white;
+    font-size: 16px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
+    margin-top: 20px; /* Aggiunge uno spazio tra l'h1 e il p */
+}
+
+.abouttextfull span{
+    color: rgb(33, 128, 241);
+}
+
+.abouttextfull a{
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(33, 128, 241);
+}
+
+.abouttextshort{
+    display: none;
+}
+
+
+@media screen and (width < 800px){
+    .abouttextfull{
+        display: none;
+    }
+
+
+    .abouttextshort{
+        width: 50%;
+        height: 100%;
+        text-align: left;
+        display: flex;
+        align-items: flex-start; /* Cambia align-items a flex-start per allineare a sinistra */
+        justify-content: center; /* Aggiungi justify-content per centrare verticalmente il contenuto */
+        flex-direction: column; /* Dispone gli elementi in colonna */
+        padding-left: 70px; /* Sposta il margine sinistro in padding */
+    }
+    
+    .abouttextshort h1{
+        color: white;
+        font-size: 50px;
+        font-family: "Space Grotesk", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 418;
+        font-style: normal;
+    }
+    
+    .abouttextshort p{
+        color: white;
+        font-size: 16px;
+        font-family: "Space Grotesk", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 418;
+        font-style: normal;
+        margin-top: 20px; /* Aggiunge uno spazio tra l'h1 e il p */
+    }
+    
+    .abouttextshort span{
+        color: rgb(33, 128, 241);
+    }
+    
+    .abouttextshort a{
+        cursor: pointer;
+        text-decoration: underline;
+        color: rgb(33, 128, 241);
+    }
+}
+
