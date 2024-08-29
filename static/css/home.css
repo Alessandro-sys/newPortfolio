@@ -108,7 +108,7 @@ html{
 }
 
 .abouttextfull{
-    width: 50%;
+    width: 40%;
     height: 100%;
     text-align: left;
     display: flex;
@@ -146,56 +146,3 @@ html{
     text-decoration: underline;
     color: rgb(33, 128, 241);
 }
-
-.abouttextshort{
-    display: none;
-}
-
-
-@media screen and (width < 800px){
-    .abouttextfull{
-        display: none;
-    }
-
-
-    .abouttextshort{
-        width: 50%;
-        height: 100%;
-        text-align: left;
-        display: flex;
-        align-items: flex-start; /* Cambia align-items a flex-start per allineare a sinistra */
-        justify-content: center; /* Aggiungi justify-content per centrare verticalmente il contenuto */
-        flex-direction: column; /* Dispone gli elementi in colonna */
-        padding-left: 70px; /* Sposta il margine sinistro in padding */
-    }
-    
-    .abouttextshort h1{
-        color: white;
-        font-size: 50px;
-        font-family: "Space Grotesk", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 418;
-        font-style: normal;
-    }
-    
-    .abouttextshort p{
-        color: white;
-        font-size: 16px;
-        font-family: "Space Grotesk", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 418;
-        font-style: normal;
-        margin-top: 20px; /* Aggiunge uno spazio tra l'h1 e il p */
-    }
-    
-    .abouttextshort span{
-        color: rgb(33, 128, 241);
-    }
-    
-    .abouttextshort a{
-        cursor: pointer;
-        text-decoration: underline;
-        color: rgb(33, 128, 241);
-    }
-}
-
