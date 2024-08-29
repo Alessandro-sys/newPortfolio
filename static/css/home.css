@@ -37,7 +37,7 @@ html{
 
 .name h2{
     padding-top: 5px;
-    color: white;
+    color: rgb(33, 128, 241);
     font-size: 20px;
     font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
@@ -79,6 +79,7 @@ html{
 .aboutme button{
     text-decoration: none;
     color: rgb(20, 20, 20);
+    background-color: rgb(255,255,255);
     font-size: 15px;
     font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
@@ -90,7 +91,8 @@ html{
 }
 
 .aboutme button:hover{
-    opacity: 70%;
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
     cursor: pointer;
 }
 
@@ -102,9 +104,10 @@ html{
 .about{
     height: 100vh;
     width: 100%;
-    background-image: url(/static/images/about.png);
+    background-image: url(/static/images/about3.jpg);
     background-size: cover;
     background-position: center;
+    display: flex;
 }
 
 .abouttextfull{
@@ -145,4 +148,79 @@ html{
     cursor: pointer;
     text-decoration: underline;
     color: rgb(33, 128, 241);
+}
+
+.propic{
+    width: 20%;
+    height: 100%;
+    padding-left: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.propic img{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    height: 500px;
+}
+
+@media screen and (width < 950px) and (width > 600px){
+    .propic{
+        padding-left: 50px;
+    }
+    .propic img{
+        height: 400px;
+    }
+}
+
+@media screen and (width <= 600px) and (width > 400px){
+    .about{
+        height: 110vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .abouttextfull{
+        padding-left: 30px;
+        padding-top: 30px;
+        width: 80%;
+    }
+    .propic{
+        width: 100%;
+        padding-left: 0;
+        margin: 0 auto;  /* Centra l'elemento */
+        text-align: center;
+        display: flex;
+        justify-content: center; /* Centra l'immagine orizzontalmente */
+    }
+    .propic img{
+        height: 400px;
+    }
+}
+
+@media screen and (width <= 400px){
+    .about{
+        height: 110vh;
+        display: flex;
+        flex-direction: column;
+    }
+    .abouttextfull{
+        padding-left: 30px;
+        padding-top: 30px;
+        width: 80%;
+    }
+    .propic{
+        width: 100%;
+        padding-left: 0;
+        margin: 0 auto;  /* Centra l'elemento */
+        text-align: center;
+        display: flex;
+        justify-content: center; /* Centra l'immagine orizzontalmente */
+    }
+    .abouttextfull h1{
+        font-size: 30px;
+    }
+    .abouttextfull p{
+        font-size: 12px;
+    }
 }
