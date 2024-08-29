@@ -96,6 +96,11 @@ html{
     cursor: pointer;
 }
 
+.aboutme button:active{
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
+}
+
 
 /* ABOUT */
 /*#############################################################################*/
@@ -163,7 +168,7 @@ html{
 .propic img{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
-    height: 500px;
+    height: 300px;
 }
 
 @media screen and (width < 950px) and (width > 600px){
@@ -195,7 +200,7 @@ html{
         justify-content: center; /* Centra l'immagine orizzontalmente */
     }
     .propic img{
-        height: 400px;
+        height: 200px;
     }
     .abouttextfull p{
         margin-bottom: 0;
@@ -204,7 +209,7 @@ html{
 
 @media screen and (width <= 400px){
     .about{
-        height: 110vh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
     }
@@ -221,11 +226,14 @@ html{
         display: flex;
         justify-content: center; /* Centra l'immagine orizzontalmente */
     }
+    .propic img{
+        height: 200px;
+    }
     .abouttextfull h1{
         font-size: 30px;
     }
     .abouttextfull p{
-        font-size: 12px;
+        font-size: 15px;
         margin: 0;
     }
 }
