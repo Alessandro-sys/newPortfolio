@@ -37,7 +37,7 @@ html{
 
 .name h2{
     padding-top: 5px;
-    color: rgb(33, 128, 241);
+    color: white;
     font-size: 20px;
     font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
@@ -104,7 +104,7 @@ html{
 .about{
     height: 100vh;
     width: 100%;
-    background-image: url(/static/images/about3.jpg);
+    background-image: url(/static/images/about.png);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -138,6 +138,7 @@ html{
     font-weight: 418;
     font-style: normal;
     margin-top: 20px; /* Aggiunge uno spazio tra l'h1 e il p */
+    margin-bottom: 90px;
 }
 
 .abouttextfull span{
@@ -196,6 +197,9 @@ html{
     .propic img{
         height: 400px;
     }
+    .abouttextfull p{
+        margin-bottom: 0;
+    }
 }
 
 @media screen and (width <= 400px){
@@ -222,5 +226,6 @@ html{
     }
     .abouttextfull p{
         font-size: 12px;
+        margin: 0;
     }
 }
