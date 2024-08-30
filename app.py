@@ -1,4 +1,3 @@
-from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -32,3 +31,11 @@ def pages():
 @app.route("/astro")
 def astro():
     return render_template("astro.html")
+
+@app.route("/robocup")
+def robocup():
+    return render_template("robocup.html")
+
+@app.route("/robocupIt")
+def robocupIt():
+    return render_template("robocupIt.html")

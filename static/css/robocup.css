@@ -1,0 +1,351 @@
+*{
+    margin: 0;
+    border: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+/*------------------------------------------------------------------------------*/
+
+.menubar{
+    height: 50px;
+    min-width: 100%;
+    max-width: 100%;
+    z-index: 9999;
+    position: fixed;
+    background: rgba(232, 230, 218, .8);
+    display: flex;
+    box-sizing: border-box;
+}
+
+.openNavWrite{
+    display: none;
+}
+
+.menubar img{
+    margin-top: 5px;
+    margin-left: 10px;
+    height: 40px;
+    opacity: .9;
+}
+
+.menubarcontainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.menubarcontainer img{
+    max-height: 20px;
+    padding-top: 8px;
+}
+
+.menubar a{
+    font-family: 'League Spartan', sans-serif;
+
+    opacity: .8;
+    line-height: 50px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+
+/*------------------------------------------------------------------------------*/
+
+
+.title{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.fotorobot{
+    height: 50%;
+}
+
+.title img{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.title h1{
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 70px;
+    padding: 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.title h2{
+    font-family: 'League Spartan', sans-serif;
+    color: #F28705;
+    font-size: 40px;
+}
+
+
+.orange{
+    color: #F28705;
+}
+
+/*------------------------------------------------------------------------------*/
+
+.sectionLeft{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    background-color: white; 
+}
+
+.sectionLeftText{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionLeftText h1{
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 60px;
+    margin-left: 70px;
+}
+
+.sectionLeftText p{
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 20px;
+    margin-left: 70px;
+    padding: 20px 0;
+}
+
+.divLefth1{
+    width: 100%;
+    text-align: left;
+}
+
+.divLeftp{
+    width: 100%;
+    text-align: left;
+    line-height: 30px;
+}
+
+.rightImage{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightImage img{
+    width: 70%;
+}
+
+
+
+/*------------------------------------------------------------------------------*/
+
+.sectionRight{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.sectionRightText{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.sectionRightText h1{
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 60px;
+}
+
+.sectionRightText p{
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 20px;
+    margin-right: 70px;
+    padding: 20px 0;
+}
+
+
+.divRighth1{
+    width: 100%;
+    text-align: left;
+}
+
+.divRightp{
+    width: 100%;
+    text-align: left;
+    line-height: 30px;
+}
+
+
+.leftImage{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftImage img{
+    width: 70%;
+}
+
+
+
+
+@media screen and (width <= 1100px) and (width > 650px){
+    .sectionLeft{
+        height: 150vh;
+    }
+    .sectionRight{
+        height: 150vh;
+    }
+}
+
+
+@media screen and (width <= 650px){
+    .menubarcontainer{
+        display: none;
+    }
+    .openNavWrite{
+        display: flex;
+        height: 50px;
+        color: rgba(0,0,0,.8);
+        width: 100%;
+        justify-content: right;
+        line-height: 50px;   
+    }
+    .openNavWrite span{
+        font-family: 'League Spartan', sans-serif;
+        margin-right: 20px;
+    }
+
+
+
+    .sectionLeft{
+        flex-direction: column;
+        height: 160vh;
+    }
+    .sectionLeftText{
+        width: 100%;
+        height: fit-content;
+    }
+    .sectionLeftText h1{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .sectionLeft p{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .rightImage{
+        height: 50%;
+        width: 100%;
+    }
+
+    
+    .sectionRight{
+        flex-direction: column-reverse;
+        height: 160vh;
+    }
+    .sectionRightText{
+        width: 100%;
+        height: fit-content;
+    }
+    .sectionRightText h1{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .sectionRight p{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .leftImage{
+        height: 50%;
+        width: 100%;
+    }
+}
+
+
+
+
+.sidenav {
+    z-index: 9999;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(232, 230, 218, .8);
+    font-family: 'League Spartan', sans-serif;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: rgba(0,0,0,.8);
+    display: block;
+    transition: 0.3s;
+  }
+
+  .bandierina{
+    width: 30px;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  #main {
+    transition: margin-left .5s;
+    padding: 16px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

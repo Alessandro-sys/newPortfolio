@@ -1,0 +1,155 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    <title>Astroale | RoboCup</title>
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/css/robocup.css">
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="/static/js/robocup.js" defer></script>
+{% endblock %}
+
+
+{% block body %}
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/" class="nav-link">Home</a>
+    <a href="#goal" class="nav-link">Obiettivo</a>
+    <a href="#meaning" class="nav-link">Significato</a>
+    <a href="#robot" class="nav-link">Robot</a>
+    <a href="#code" class="nav-link">Codice</a>
+    <a href="#skills" class="nav-link">Competenze</a>
+    <a href="/robocup"><img src="/static/images/eng.png" alt="" class="bandierina"></a>
+</div> 
+
+<div class="menubar" id="menubarDef">
+    <a href="/"><img src="/static/images/Loghi/astroaleBlackLogo.png" alt=""></a>
+    <div class="menubarcontainer">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#goal" class="nav-link">Obiettivo</a>
+        <a href="#meaning" class="nav-link">Significato</a>
+        <a href="#robot" class="nav-link">Robot</a>
+        <a href="#code" class="nav-link">Codice</a>
+        <a href="#skills" class="nav-link">Competenze</a>
+        <a href="/robocup"><img src="/static/images/eng.png" alt=""></a>
+    </div> 
+    <div class="openNavWrite">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    </div>
+</div>
+
+<section class="title" id="home">
+    <div class="fotorobot">
+        <img src="/static/images/robot.png" alt="">
+    </div>
+    <div class="testo">
+        <h1>RoboCup Jr 2023</h1>
+        <h2>Bari - Vicenza - Varaždin</h2>
+    </div>
+</section>
+
+<section class="sectionLeft" id="goal">
+    <div class="sectionLeftText">
+        <div class="divLefth1">
+            <h1>OBIETTIVO</h1>
+        </div>
+        <div class="divLeftp">
+            <p>
+                Il nostro robot è stato progettato per seguire una <span class="orange">linea nera su piastrelle bianche</span>. La linea è costantemente interrotta da vari tipi di <span class="orange">ostacoli</span>: <span class="orange">barriere fisiche</span>, oggetti solidi che bloccano il percorso del robot, <span class="orange">interruzioni della linea</span>, <span class="orange">intersezioni</span>, intersezioni con direzioni obbligatorie segnalate da <span class="orange">nastro verde</span>, <span class="orange">rampe</span> e <span class="orange">sottopassaggi</span>. <br>
+Una volta completato il percorso, il robot deve entrare nella <span class="orange">zona di evacuazione</span>, un'area di soccorso dove si trovano le <span class="orange">vittime</span>: 2 vittime vive (rappresentate da <span class="orange">palline d'argento</span>) e 1 vittima deceduta (rappresentata da una <span class="orange">pallina nera</span>). Il robot deve salvare tutte le vittime e portarle nella <span class="orange">zona sicura</span>.
+            </p>
+        </div>
+    </div>
+    <div class="rightImage">
+        <img src="/static/images/field.PNG" alt="">
+    </div>
+</section>
+
+<section class="sectionRight" id="meaning">
+    <div class="leftImage">home
+        </div>
+        <div class="divRightp">
+            <p>
+                Lo scopo di questa categoria è simulare uno <span class="orange">scenario distopico</span> in cui, a seguito di una <span class="orange">catastrofe</span>, gli esseri umani non sono in grado di raggiungere le potenziali vittime che necessitano di <span class="orange">soccorsi</span>. Le tecnologie moderne hanno raggiunto livelli senza precedenti, rendendo cruciale iniziare a formare sia i <span class="orange">giovani</span> che i robot fin da subito. In questo modo, possono sviluppare le competenze necessarie che potranno essere applicate a scenari realistici. Questo addestramento è vitale per garantire che le future generazioni siano ben preparate a gestire situazioni di emergenza e a utilizzare efficacemente la <span class="orange">tecnologia all'avanguardia</span> per salvare vite. L'obiettivo è promuovere una generazione di innovatori e soccorritori che siano abili nel navigare e superare sfide complesse in tempi di crisi.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="sectionLeft" id="robot">
+    <div class="sectionLeftText">
+        <div class="divLefth1">
+            <h1>ROBOT</h1>
+        </div>
+        <div class="divLeftp">
+            <p>
+                Il nostro robot era un <span class="orange">Lego Mindstorms EV3</span>. L'abbiamo scelto per la sua <span class="orange">versatilità</span> nella costruzione, che ci permette di costruirlo e modificarlo facilmente in base alle nostre esigenze, oltre alla sua natura programmabile. Contrariamente a quanto molti potrebbero pensare, anche se è un <span class="orange">robot programmato a blocchi</span>, rappresenta una sfida significativa nello sviluppo dell'algoritmo. I blocchi possono essere una grande <span class="orange">limitazione nello sviluppo</span>, quindi trovare un modo per aggirare queste restrizioni richiede sia tempo che conoscenza del linguaggio. <br>
+
+                Inoltre, per le <span class="orange">competizioni europee</span>, abbiamo installato un <span class="orange">sistema operativo basato su Linux</span> sul robot per eseguire <span class="orange">MicroPython</span> e programmarlo utilizzando linee di codice. Nonostante le notevoli limitazioni fisiche, siamo riusciti a creare un algoritmo ottimizzato per navigare in tutto il percorso e <span class="orange">salvare le vittime</span>. <br><br>
+
+                <span class="orange"><a href="/static/images/TDP.pdf" style="text-decoration: underline; color: #F28705;">Technical Description Paper</a></span>
+            </p>
+
+        </div>
+    </div>
+    <div class="rightImage">
+        <img src="/static/images/robot.png" alt="">
+    </div>
+</section>
+
+
+<section class="sectionRight" id="code">
+    <div class="leftImage">
+        <img src="/static/images/algorithm.PNG" alt="">
+    </div>
+    <div class="sectionRightText">
+        <div class="divRighth1">
+            <h1>CODICE</h1>
+        </div>
+        <div class="divRightp">
+            <p>
+                La parte più cruciale del nostro codice era l'algoritmo per la <span class="orange">zona di evacuazione</span>. Abbiamo utilizzato MicroPython, una versione leggera di Python senza librerie non necessarie, per eseguire una forma di <span class="orange">apprendimento supervisionato</span>. <br>
+
+                Il database del nostro robot conteneva una serie di misurazioni della zona di evacuazione: inizialmente senza alcun elemento all'interno, poi con le zone sicure (triangoli) in tutti gli angoli e infine con le uscite su tutti i lati. Una volta che il robot entra nella zona di evacuazione durante la competizione, effettua misurazioni del contesto attuale. Confrontando questi dati con le informazioni nel suo database, può ricreare un modello della zona di evacuazione configurata per la competizione. <br>
+
+                Inoltre, utilizzando la <span class="orange">deviazione standard</span>, può riconoscere picchi nelle misurazioni che corrispondono alla forma delle palline, consentendogli di individuarle e successivamente di soccorrerle.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="sectionLeft" id="skills">
+    <div class="sectionLeftText">
+        <div class="divLefth1">
+            <h1>COMPETENZE</h1>
+        </div>
+        <div class="divLeftp">
+            <p>
+                Durante questa esperienza, abbiamo acquisito una serie di competenze preziose. Abbiamo migliorato le nostre capacità di <span class="orange">programmazione</span>, in particolare con MicroPython, e acquisito una comprensione più approfondita degli algoritmi e delle loro applicazioni pratiche. <br>
+                Le nostre capacità di risoluzione dei problemi sono state significativamente affinate mentre affrontavamo le sfide nello sviluppo di un robot funzionale. <br>
+                Abbiamo anche migliorato le nostre competenze <span class="orange">ingegneristiche</span> attraverso la costruzione e la modifica del Lego Mindstorms EV3, imparando a ottimizzare il suo design fisico per migliorarne le prestazioni. <br>
+                Inoltre, abbiamo sviluppato un forte senso di <span class="orange">lavoro di squadra</span> e collaborazione, poiché una comunicazione efficace e coordinata è stata essenziale per il nostro successo. Questo progetto ci ha anche insegnato l'importanza della <span class="orange">perseveranza</span> e dell'adattabilità, poiché abbiamo dovuto continuamente perfezionare il nostro approccio in risposta agli ostacoli imprevisti.
+        </div>
+    </div>
+    <div class="rightImage">
+        <img src="/static/images/competences.png" alt="">
+    </div>
+</section>
+
+
+<script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("menubarDef").style.display = "none";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("menubarDef").style.display = "flex";
+    }
+</script>
+{% endblock %}
