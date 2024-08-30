@@ -28,3 +28,7 @@ def index():
 @app.route("/home")
 def pages():
     return redirect("/")
+
+@app.route("/astro")
+def astro():
+    return render_template("astro.html")

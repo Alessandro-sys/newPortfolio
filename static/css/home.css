@@ -107,7 +107,7 @@ html{
 
 
 .about{
-    height: 100vh;
+    height: 90vh;
     width: 100%;
     background-image: url(/static/images/about.png);
     background-size: cover;

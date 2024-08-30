@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    <title>Astroale | Gallery</title>
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/css/astro.css">
+{% endblock %}
+
+{% block body %}
+    <!--
+    <div class="menubar">
+        <a href="#"><img src="index_content/logosolo.png" alt=""></a>
+        <div class="menubarcontainer">
+            <a href="#title1" class="nav-link">Home</a>
+            <a href="#gallery1" class="nav-link">Gallery</a>
+        </div>  
+    </div>
+    -->
+
+    <section class="title" id="title1">
+        <h1 class="mainTitle">AstroAle AstroPhotography Gallery</h1>
+        <h3 class="subtitle">SkyWatcher 130/900 f6.9</h3>
+        <h3 class="subtitle">5mm, 25mm eyepieces - 2x barlow</h3>
+        <h3 class="subtitle">Iphone13 Camera</h3>
+        <div class="socials">
+            <a href="https://www.instagram.com/astroale_/">
+                <img src="/static/images/Loghi/Instagram.png" alt="Instagram Logo">
+            </a>
+            <a href="https://x.com/Aleexe26981598">
+                <img src="/static/images/Loghi/X.png" alt="X Logo">
+            </a>
+            <a href="https://github.com/Alessandro-sys">
+                <img src="/static/images/Loghi/GitHub.png" alt="GitHub Logo">
+            </a>
+        </div>
+        <div class="explore">
+            <a href="#gallery1">
+                <button>Explore</button>
+            </a>
+        </div>
+    </section>
+
+
+
+    <div class="container" id="gallery1">
+        
+        <div class="photo-gallery">
+
+            <div class="column">
+
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/2.JPG" alt="MoonMosaic">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/1.JPG" alt="lunaArancio">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/3.PNG" alt="LunaRosa">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/7.JPG" alt="BabboNatale">
+                </div>
+            </div>
+
+            <div class="column">
+
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/11.jpg" alt="ToenailMoon">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/12.jpg" alt="Mineral">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/14.jpg" alt="Fasi">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/4.jpg" alt="Saturno1">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/10.PNG" alt="Saturno2">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/16.PNG" alt="Saturno3">
+                </div>
+            </div>
+
+            <div class="column">
+
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/13.jpg" alt="ISS">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/6.JPG" alt="">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/8.PNG" alt="">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/9.JPG" alt="">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/15.PNG" alt="">
+                </div>
+                <div class="photo">
+                    <img src="/static/images/galleryPhotos/5.jpg" alt="Giove1">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
