@@ -14,7 +14,7 @@ html{
 .title{
     width: 100%;
     height: 100vh;
-    background-image: url(/static/images/title.png);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1)), url(/static/images/title.png);
     background-size: cover;
     background-position: center;
 
@@ -147,13 +147,14 @@ html{
 }
 
 .abouttextfull span{
-    color: rgb(33, 128, 241);
+    /*color: rgb(33, 128, 241);*/
+    color: rgb(32, 194, 14);
 }
 
 .abouttextfull a{
     cursor: pointer;
     text-decoration: underline;
-    color: rgb(33, 128, 241);
+    color: rgb(32, 194, 14);
 }
 
 .propic{
@@ -169,20 +170,21 @@ html{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     height: 300px;
+    opacity: 80%;
 }
 
 @media screen and (width < 950px) and (width > 600px){
     .propic{
-        padding-left: 50px;
+        padding-left: 60px;
     }
     .propic img{
-        height: 400px;
+        height: 250px;
     }
 }
 
 @media screen and (width <= 600px) and (width > 400px){
     .about{
-        height: 110vh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
     }
@@ -236,4 +238,101 @@ html{
         font-size: 15px;
         margin: 0;
     }
+}
+
+
+
+/*  ASTROGALLERY  */
+/*#############################################################################*/
+
+.astrogallery{
+    height: 50vh;
+    background-color: black;
+    background-image: url(/static/images/astrogallery2.PNG);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.blur{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+
+.astroinfo{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center; /* Cambia align-items a flex-start per allineare a sinistra */
+    justify-content: center; /* Aggiungi justify-content per centrare verticalmente il contenuto */
+    flex-direction: column; /* Dispone gli elementi in colonna */
+}
+
+.astrotitle{
+    width: 100%;
+    text-align: center;
+}
+
+.astrotitle h1{
+    color: white;
+    font-size: 50px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
+}
+
+.astrotitle h2{
+    padding-top: 5px;
+    color: white;
+    font-size: 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
+}
+
+.astrobutton{
+    width: 100%;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.astrobutton button{
+    text-decoration: none;
+    color: rgb(20, 20, 20);
+    background-color: rgb(255,255,255);
+    font-size: 15px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    padding: 15px;
+    border-radius: 1rem;
+    pointer-events: unset;
+}
+
+.astrobutton button:hover{
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
+    cursor: pointer;
+}
+
+.astrobutton button:active{
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
+}
+
+
+@media screen and (width < 500px) {
+    .astrotitle h1{
+        font-size: 30px;
+    }  
+    .astroinfo h2{
+        font-size: 15px;
+    } 
 }
