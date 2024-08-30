@@ -20,11 +20,14 @@ section{
 
 .menubar{
     height: 50px;
-    min-width: 100%;
-    max-width: 100%;
+    margin-top: 7px;
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    border-radius: 1rem;
     z-index: 9999;
     position: fixed;
-    background: rgba(44, 44, 69, .8);
+    background: rgba(255, 255, 255, .8);
+    /*background: rgba(0, 0, 0, 1);*/
     display: flex;
     box-sizing: border-box;
 }
@@ -33,7 +36,6 @@ section{
     margin-top: 5px;
     margin-left: 10px;
     height: 40px;
-    opacity: .8;
 }
 
 .menubarcontainer{
@@ -46,16 +48,18 @@ section{
 }
 
 .menubar a{
-    font-family: 'League Spartan', sans-serif;
-
-    opacity: .8;
+    font-family: "Space Grotesk", sans-serif;
+    opacity: 1;
     line-height: 50px;
     text-decoration: none;
-    color: white;
+    color: black;
     margin-left: 10px;
     margin-right: 20px;
 }
 
+.nav-link.active {
+    text-decoration: underline;
+}
 
 /*-------------------------------------------------------*/
 

@@ -9,56 +9,71 @@
     <link rel="stylesheet" href="/static/css/home.css">
 {% endblock %}
 
+{% block script %}
+    <script type="text/javascript" src="/static/js/home.js" defer></script>
+{% endblock %}
+
+
 {% block body %}
-    <div class="title">
-        <div class="name">
-            <h1>Hello, I'm AstroAle!</h1>
-            <h2>IT Developer and amateur astrophotographer</h2>
-        </div>
-        <div class="socials">
-            <a href="https://www.instagram.com/astroale_/">
-                <img src="/static/images/Loghi/Instagram.png" alt="Instagram Logo">
-            </a>
-            <a href="https://x.com/Aleexe26981598">
-                <img src="/static/images/Loghi/X.png" alt="X Logo">
-            </a>
-            <a href="https://github.com/Alessandro-sys">
-                <img src="/static/images/Loghi/GitHub.png" alt="GitHub Logo">
-            </a>
-        </div>
-        <div class="aboutme">
-            <a href="#about">
-                <button>About Me</button>
-            </a>
-        </div>
+<div class="menubar">
+    <a href="/"><img src="/static/images/Loghi/astroaleBlackLogo.png" alt=""></a>
+    <div class="menubarcontainer">
+        <a href="#title" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#astro" class="nav-link">Gallery</a>
     </div>
-    <div class="about" id="about">
-        <div class="abouttextfull">
-            <h1>> sudo whoami</h1>
-            <p>
-                👋 Hello! I'm <span class="orange">Alessandro</span>, a <span class="orange">19-year-old</span> university student from Italy, passionate about <span class="orange">technology</span>. I chose Computer Science for its blend of <span class="orange">coding and problem-solving</span>, and I love exploring <span class="orange">algorithms and software development</span>. <br><br>
-                Robotics is another thrill for me—I competed in <a href="https://rcjcroatia2023.eu" class="orange">RobocupJr</a>, earning <span class="orange">3rd place in Italy</span> and <span class="orange">15th in Europe</span>. <br><br>
-                I'm also a huge <span class="orange">space nerd</span>, dreaming of working with <span class="orange">SpaceX or ESA</span> as a software engineer, maybe even starting my own space company 🚀! <br><br>
-                Thanks for visiting! Let's connect and embark on this cosmic journey together. <span class="orange">Per aspera ad astra!</span> 🚀✨
-            </p>
-        </div>
-        <div class="propic">
-            <img src="/static/images/propicRingGreen.png" alt="">
-        </div>
+</div>
+
+
+<section class="title" id="title">
+    <div class="name">
+        <h1>Hello, I'm AstroAle!</h1>
+        <h2>IT Developer and amateur astrophotographer</h2>
     </div>
-    <div class="astrogallery">
-        <div class="blur">
-            <div class="astroinfo">
-                <div class="astrotitle">
-                    <h1>AstroGallery</h1>
-                    <h2>a collection of all my best astrophotos</h2>
-                </div>
-                <div class="astrobutton">
-                    <a href="/astro">
-                        <button>Explore</button>
-                    </a>
-                </div>
+    <div class="socials">
+        <a href="https://www.instagram.com/astroale_/">
+            <img src="/static/images/Loghi/Instagram.png" alt="Instagram Logo">
+        </a>
+        <a href="https://x.com/Aleexe26981598">
+            <img src="/static/images/Loghi/X.png" alt="X Logo">
+        </a>
+        <a href="https://github.com/Alessandro-sys">
+            <img src="/static/images/Loghi/GitHub.png" alt="GitHub Logo">
+        </a>
+    </div>
+    <div class="aboutme">
+        <a href="#about">
+            <button>About Me</button>
+        </a>
+    </div>
+</section>
+<section class="about" id="about">
+    <div class="abouttextfull">
+        <h1>> sudo whoami</h1>
+        <p>
+            👋 Hello! I'm <span class="orange">Alessandro</span>, a <span class="orange">19-year-old</span> university student from Italy, passionate about <span class="orange">technology</span>. I chose Computer Science for its blend of <span class="orange">coding and problem-solving</span>, and I love exploring <span class="orange">algorithms and software development</span>. <br><br>
+            Robotics is another thrill for me—I competed in <a href="https://rcjcroatia2023.eu" class="orange">RobocupJr</a>, earning <span class="orange">3rd place in Italy</span> and <span class="orange">15th in Europe</span>. <br><br>
+            I'm also a huge <span class="orange">space nerd</span>, dreaming of working with <span class="orange">SpaceX or ESA</span> as a software engineer, maybe even starting my own space company 🚀! <br><br>
+            Thanks for visiting! Let's connect and embark on this cosmic journey together. <span class="orange">Per aspera ad astra!</span> 🚀✨
+        </p>
+    </div>
+    <div class="propic">
+        <img src="/static/images/propicRingGreen.png" alt="">
+    </div>
+</section>
+<section class="astrogallery" id="astro">
+    <div class="blur">
+        <div class="astroinfo">
+            <div class="astrotitle">
+                <h1>AstroGallery</h1>
+                <h2>a collection of all my best astrophotos</h2>
+            </div>
+            <div class="astrobutton">
+                <a href="/astro">
+                    <button>Explore</button>
+                </a>
             </div>
         </div>
     </div>
+</section>
 {% endblock %}
