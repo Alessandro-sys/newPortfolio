@@ -22,6 +22,24 @@ html{
     box-sizing: border-box;
 }
 
+.sidenav {
+    z-index: 9999;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, .8);
+    font-family: "Space Grotesk", sans-serif;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.openNavWrite{
+    display: none;
+}
+
 .menubar img{
     margin-top: 5px;
     margin-left: 10px;
@@ -47,10 +65,48 @@ html{
     margin-right: 20px;
 }
 
+.menubar a:hover{
+    color: rgba(0, 0, 0, .5);
+}
+
+.sidenav a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
 .nav-link.active {
     text-decoration: underline;
 }
 
+.nav-link2.active {
+    text-decoration: underline;
+}
+
+.sidenav a:hover {
+    color: rgba(0, 0, 0, .5);
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
 
 /*  HOME  */
 /*#############################################################################*/
@@ -145,6 +201,24 @@ html{
     background-color: rgb(225, 225, 225);
 }
 
+@media screen and (width <= 650px){
+    .menubarcontainer{
+        display: none;
+    }
+    .openNavWrite{
+        display: flex;
+        height: 50px;
+        color: rgba(0,0,0,.8);
+        width: 100%;
+        justify-content: right;
+        line-height: 50px;   
+    }
+    .openNavWrite span{
+        font-family: 'League Spartan', sans-serif;
+        margin-right: 20px;
+    }
+}
+
 
 /* ABOUT */
 /*#############################################################################*/
@@ -227,8 +301,11 @@ html{
 }
 
 @media screen and (width <= 600px) and (width > 400px){
+    .title{
+        height: fit-content;
+    }
     .about{
-        height: 100vh;
+        height: fit-content;
         display: flex;
         flex-direction: column;
     }
@@ -254,8 +331,18 @@ html{
 }
 
 @media screen and (width <= 400px){
+    .title{
+        min-height: 100vh;
+        height: fit-content;
+    }
+    .title h1{
+        font-size: 30px;
+    }
+    .title h2{
+        font-size: 15px;
+    }
     .about{
-        height: 100vh;
+        height: fit-content;
         display: flex;
         flex-direction: column;
     }
@@ -508,4 +595,14 @@ html{
 .card button:active{
     color: rgb(240, 240, 240);
     background-color: rgb(50, 50, 50);
+}
+
+
+@media screen and (width <= 400px){
+    .exptitle h1{
+        font-size: 30px;
+    }
+    .exptitle h2{
+        font-size: 15px;
+    }
 }
