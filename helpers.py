@@ -17,3 +17,10 @@ def sendEmail(body, toemail, subject):
     s.send_message(msg)
     s.quit()
     del msg
+
+def format_logs(logs):
+    formatted_logs = []
+    for log in logs:
+        # log[0] = id, log[1] = piattaforma, log[3] = ora
+        formatted_logs.append(f"- {log[0]}, {log[1]}, {log[3]}")
+    return "\n".join(formatted_logs)
