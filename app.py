@@ -1,11 +1,12 @@
-from flask import Flask, flash, redirect, render_template, request, session, url_for, g
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
+from flask import Flask, redirect, render_template, g
 from flask_session import Session
-from werkzeug.security import check_password_hash, generate_password_hash
-from werkzeug.utils import secure_filename
-import base64
-from PIL import Image
 import sqlite3
 from datetime import datetime
+from string import Template
+
+from helpers import sendEmail
 
 app = Flask(__name__)
 
@@ -96,3 +97,30 @@ def stats():
     db.commit()
 
     return render_template("table.html", accessi = accessi, logs = log)
+
+
+
+
+def scheduled_task():
+    db = get_db()
+    cursor = db.cursor()
+
+    current_date = datetime.now().strftime('%Y-%m-%d')
+
+    cursor.execute("SELECT * FROM access_log WHERE date = '?'", (current_date))
+    logs = cursor.fetchall()
+
+    db.commit()
+
+    dailyCounter = len(logs)
+    
+
+    emailBody = Template('''
+Daily log 
+
+''')
+
+# Configura APScheduler per eseguire `scheduled_task` ogni giorno a mezzanotte
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=scheduled_task, trigger=CronTrigger(hour=8, minute=0))
+scheduler.start()
