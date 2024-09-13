@@ -16,7 +16,8 @@ html{
     border-radius: 1rem;
     z-index: 9999;
     position: fixed;
-    background: rgba(255, 255, 255, .8);
+    /*background: rgba(255, 255, 255, .8);*/
+    background: none;
     /*background: rgba(0, 0, 0, 1);*/
     display: flex;
     box-sizing: border-box;
@@ -29,7 +30,8 @@ html{
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255, .8);
+    /*background: rgba(255, 255, 255, .8);*/
+    background: none;
     font-family: "Space Grotesk", sans-serif;
     overflow-x: hidden;
     transition: 0.5s;
@@ -60,20 +62,23 @@ html{
     opacity: 1;
     line-height: 50px;
     text-decoration: none;
-    color: black;
+    /*color: black;*/
+    color: white;
     margin-left: 10px;
     margin-right: 20px;
 }
 
 .menubar a:hover{
-    color: rgba(0, 0, 0, .5);
+    /*color: rgba(0, 0, 0, .5);*/
+    color: rgba(230, 230, 230, .5);
 }
 
 .sidenav a{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: black;
+    /*color: black;*/
+    color: white;
     display: block;
     transition: 0.3s;
 }
