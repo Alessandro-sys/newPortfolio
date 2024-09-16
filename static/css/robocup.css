@@ -123,6 +123,11 @@ html{
     height: 50%;
 }
 
+.testo{
+    display: flexbox;
+    text-align: center;
+}
+
 .title img{
     height: 100%;
     padding: 0;
@@ -142,6 +147,13 @@ html{
     font-family: 'League Spartan', sans-serif;
     color: #F28705;
     font-size: 40px;
+}
+.title a{
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 20px;
+    margin-top: 20px;
+ 
 }
 
 
