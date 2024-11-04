@@ -86,20 +86,20 @@ def insta():
     return redirect("/")
 
 
-# @app.route("/stats")
-# def stats():
-#     db = get_db()
-#     cursor3 = db.cursor()
+@app.route("/stats")
+def stats():
+    db = get_db()
+    cursor3 = db.cursor()
 
-#     cursor3.execute("SELECT * FROM data")
-#     accessi = cursor3.fetchall()
+    cursor3.execute("SELECT * FROM data")
+    accessi = cursor3.fetchall()
 
-#     cursor3.execute("SELECT * FROM access_log")
-#     log = cursor3.fetchall()
+   cursor3.execute("SELECT * FROM access_log")
+   log = cursor3.fetchall()
 
-#     db.commit()
+   db.commit()
 
-#     return render_template("table.html", accessi = accessi, logs = log)
+   return render_template("table.html", accessi = accessi, logs = log)
 
 
 
