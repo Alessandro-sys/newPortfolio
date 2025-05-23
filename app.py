@@ -94,13 +94,17 @@ def stats():
     cursor3.execute("SELECT * FROM data")
     accessi = cursor3.fetchall()
 
-   cursor3.execute("SELECT * FROM access_log")
-   log = cursor3.fetchall()
+    cursor3.execute("SELECT * FROM access_log")
+    log = cursor3.fetchall()
 
-   db.commit()
+    db.commit()
 
-   return render_template("table.html", accessi = accessi, logs = log)
+    return render_template("table.html", accessi = accessi, logs = log)
 
+@app.route("/docmost")
+def docmost():
+    return render_template()
+    
 
 
 
