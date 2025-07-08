@@ -120,9 +120,19 @@ def stats():
     cursor3.execute("SELECT * FROM access_log")
     log = cursor3.fetchall()
 
+    # Recupera gli ultimi 10 giorni dalla tabella daily_access
+    cursor3.execute("""
+        SELECT date, instagram, full_link
+        FROM daily_access
+        ORDER BY date DESC
+        LIMIT 10
+    """)
+    daily_stats = cursor3.fetchall()
+    daily_stats = daily_stats[::-1]  # Ordina dal più vecchio al più recente
+
     db.commit()
 
-    return render_template("table.html", accessi = accessi, logs = log)
+    return render_template("table.html", accessi=accessi, logs=log, daily_stats=daily_stats)
 
 @app.route("/docmost")
 def docmost():
@@ -130,22 +140,32 @@ def docmost():
 
 
 
+def update_daily_access(date, instagram_count, full_link_count):
+    db = get_db()
+    cursor = db.cursor()
+    # Controlla se il dato per quella data esiste già
+    cursor.execute("SELECT 1 FROM daily_access WHERE date = ?", (date,))
+    if cursor.fetchone() is None:
+        # Inserisce solo se non esiste già
+        cursor.execute(
+            "INSERT INTO daily_access (date, instagram, full_link) VALUES (?, ?, ?)",
+            (date, instagram_count, full_link_count)
+        )
+        db.commit()
+
 @app.route("/sendEmail")
 def sendEmail():
     db = get_db()
     cursor = db.cursor()
 
-    # Calcola l'intervallo di tempo desiderato
     today = datetime.now().date()
     yesterday = today - timedelta(days=1)
     start_datetime = datetime.combine(yesterday, datetime.strptime("18:01:00", "%H:%M:%S").time())
     end_datetime = datetime.combine(today, datetime.strptime("18:00:00", "%H:%M:%S").time())
 
-    # Aggiungi due ore agli orari per la visualizzazione
     start_datetime_display = start_datetime + timedelta(hours=2)
     end_datetime_display = end_datetime + timedelta(hours=2)
 
-    # Query per selezionare gli accessi nell'intervallo specificato
     cursor.execute("""
         SELECT platform, COUNT(*)
         FROM access_log
@@ -158,11 +178,17 @@ def sendEmail():
     ))
     results = cursor.fetchall()
 
-    # Conta per tipo
     counts = {"instagram": 0, "full_link": 0}
     for platform, count in results:
         if platform in counts:
             counts[platform] = count
+
+    # Aggiorna la tabella daily_access
+    update_daily_access(
+        today.strftime('%Y-%m-%d'),
+        counts["instagram"],
+        counts["full_link"]
+    )
 
     sendNewEmail(
         subject=f"Report accessi dalle {start_datetime_display.strftime('%d/%m/%Y %H:%M')} alle {end_datetime_display.strftime('%d/%m/%Y %H:%M')}",

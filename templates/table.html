@@ -11,6 +11,55 @@
 
 {% block body %}
 <div class="statscontainer">
+
+    <!-- GRAFICO ANDAMENTO ULTIMI 10 GIORNI -->
+    <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+        <canvas id="dailyChart" width="500" height="250"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const dailyStats = {{ daily_stats|tojson }};
+        if (Array.isArray(dailyStats) && dailyStats.length > 0) {
+            const labels = dailyStats.map(row => row[0]);
+            const instagramData = dailyStats.map(row => row[1]);
+            const fullLinkData = dailyStats.map(row => row[2]);
+
+            const ctx = document.getElementById('dailyChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Instagram',
+                            data: instagramData,
+                            borderColor: 'rgba(255,99,132,1)',
+                            backgroundColor: 'rgba(255,99,132,0.2)',
+                            fill: false,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Full Link',
+                            data: fullLinkData,
+                            borderColor: 'rgba(54,162,235,1)',
+                            backgroundColor: 'rgba(54,162,235,0.2)',
+                            fill: false,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: 'Andamento accessi ultimi 10 giorni' }
+                    }
+                }
+            });
+        }
+    </script>
+    <!-- FINE GRAFICO -->
+
     <table>
         <tr>
             <th>Piattaforma</th>
