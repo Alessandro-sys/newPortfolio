@@ -1,6 +1,6 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
-from flask import Flask, redirect, render_template, g
+from flask import Flask, redirect, render_template, g, send_file
 from flask_session import Session
 import sqlite3
 from datetime import datetime, timedelta
@@ -201,4 +201,13 @@ def sendEmail():
         f"Email inviata:<br>"
         f"Periodo: {start_datetime_display.strftime('%d/%m/%Y %H:%M')} - {end_datetime_display.strftime('%d/%m/%Y %H:%M')}<br>"
         f"Instagram: {counts['instagram']}<br>Full Link: {counts['full_link']}"
+    )
+
+
+@app.route("/attestatoArbitro")
+def attestatoArbitro():
+    return send_file(
+        "static/attestato.pdf",
+        mimetype="application/pdf",
+        as_attachment=False
     )
