@@ -16,8 +16,8 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-#DATABASE = "data.db"
-DATABASE = "/home/astroale/mysite/data.db"
+DATABASE = "data.db"
+#DATABASE = "/home/astroale/mysite/data.db"
 
 def get_db():
     if 'db' not in g:
