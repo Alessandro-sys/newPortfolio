@@ -15,6 +15,57 @@
 
 {% block script %}
     <script type="text/javascript" src="/static/js/astro.js" defer></script>
+    <script>
+        // Dati foto passati dal server
+        const foto = {{ foto|tojson }};
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('photo-gallery');
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            const closeBtn = document.querySelector('.close');
+            
+            // Carica le thumbnail nella galleria
+            foto.forEach((photo, index) => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.dataset.index = index;
+                
+                const img = document.createElement('img');
+                img.src = photo.thumbnail;
+                img.alt = 'Foto partita';
+                img.loading = 'lazy';
+                
+                photoItem.appendChild(img);
+                gallery.appendChild(photoItem);
+                
+                // Click per aprire modal con immagine full size
+                photoItem.addEventListener('click', function() {
+                    modal.style.display = 'block';
+                    modalImg.src = photo.url;
+                });
+            });
+            
+            // Chiudi modal
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Chiudi cliccando fuori dall'immagine
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Chiudi con ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -58,9 +109,27 @@
         </div>
     </section>
 
+    <div class="container"> 
+        {% if foto %}
+        <div id="photo-gallery" class="photo-gallery">
+            <!-- Le foto saranno caricate qui dal JavaScript -->
+        </div>
+        {% else %}
+        <div class="no-photos">
+            <p>Nessuna foto disponibile per questa partita</p>
+        </div>
+        {% endif %}
+    </div>
 
+    <!-- Modal per immagine full size -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="Foto full size">
+        </div>
+    </div>
 
-    <section class="container" id="gallery">
+    <!-- <section class="container" id="gallery">
         
         <div class="photo-gallery">
 
@@ -125,5 +194,5 @@
                 
             </div>
         </div>
-    </div>
+    </div> -->
 {% endblock %}

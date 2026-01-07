@@ -1,10 +1,15 @@
-from apscheduler.schedulers.background import BackgroundScheduler
-from apscheduler.triggers.cron import CronTrigger
 from flask import Flask, redirect, render_template, g, send_file
 from flask_session import Session
 import sqlite3
 from datetime import datetime, timedelta
 from string import Template
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from cloudinary.utils import cloudinary_url
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 from helpers import sendNewEmail, format_logs
 
@@ -15,6 +20,12 @@ me = 'chiarulli14@gmail.com'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
+)
 
 DATABASE = "data.db"
 #DATABASE = "/home/astroale/mysite/data.db"
@@ -211,3 +222,49 @@ def attestatoArbitro():
         mimetype="application/pdf",
         as_attachment=False
     )
+
+
+
+@app.route("/galleria")
+def galleria_foto():
+    # Costruisci il folder name su Cloudinary
+    tag_name = "astroGallery"
+
+    
+    # Recupera foto da Cloudinary
+    try:
+        result = cloudinary.api.resources_by_tag(
+            tag_name,
+            max_results=500
+        )
+        print(result)
+    
+        
+        foto = []
+        for resource in result.get('resources', []):
+            print(f"  - {resource['public_id']}")
+            # URL thumbnail (bassa risoluzione)
+            thumbnail_url = cloudinary.CloudinaryImage(resource['public_id']).build_url(
+                width=300,
+                height=300,
+                crop="fill",
+                quality="auto:low"
+            )
+            
+            # URL full size (alta risoluzione)
+            full_url = cloudinary.CloudinaryImage(resource['public_id']).build_url(
+                quality="auto:best"
+            )
+            
+            foto.append({
+                "thumbnail": thumbnail_url,
+                "url": full_url
+            })
+            
+    except Exception as e:
+        print(f"✗ Errore recupero foto da Cloudinary: {e}")
+        import traceback
+        traceback.print_exc()
+        foto = []
+    
+    return render_template("astro.html", foto=foto)
