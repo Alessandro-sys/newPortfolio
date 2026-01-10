@@ -2,19 +2,19 @@
 
 
 {% block title %}
-    <title>Astroale | Home</title>
+<title>Astroale | Home</title>
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="/static/css/home.css">
+<link rel="stylesheet" href="/static/css/home.css">
 {% endblock %}
 
 {% block script %}
-    <script type="text/javascript" src="/static/js/home.js" defer></script>
+<script type="text/javascript" src="/static/js/home.js" defer></script>
 {% endblock %}
 
 {% block logo %}
-    <link rel="icon" href="/static/images/Loghi/websiteLogo.png" type="image/icon type">
+<link rel="icon" href="/static/images/Loghi/websiteLogo.png" type="image/icon type">
 {% endblock %}
 
 
@@ -28,16 +28,16 @@
 </div>
 
 <div class="menubar" id="menubarDef">
-<a href="/"><img src="/static/images/Loghi/astroaleWhiteLogo.png" alt=""></a>
-<div class="menubarcontainer">
-    <a href="#title" class="nav-link2">Home</a>
-    <a href="#about" class="nav-link2">About</a>
-    <a href="#astro" class="nav-link2">Gallery</a>
-    <a href="#exp" class="nav-link2">Experiences</a>
-</div>
-<div class="openNavWrite">
-    <span style="font-size:30px;cursor:pointer; color: white;" onclick="openNav()">&#9776;</span>
-</div>
+    <a href="/"><img src="/static/images/Loghi/astroaleWhiteLogo.png" alt=""></a>
+    <div class="menubarcontainer">
+        <a href="#title" class="nav-link2">Home</a>
+        <a href="#about" class="nav-link2">About</a>
+        <a href="#astro" class="nav-link2">Gallery</a>
+        <a href="#exp" class="nav-link2">Experiences</a>
+    </div>
+    <div class="openNavWrite">
+        <span style="font-size:30px;cursor:pointer; color: white;" onclick="openNav()">&#9776;</span>
+    </div>
 </div>
 
 
@@ -56,7 +56,7 @@
 <section class="title" id="title">
     <div class="name">
         <h1>Hello, I'm AstroAle!</h1>
-            <h2>Computer Engineering student and amateur astrophotographer</h2>
+        <h2>Computer Engineering student and amateur astrophotographer</h2>
     </div>
     <div class="socials">
         <a href="https://www.instagram.com/astroale_/">
@@ -79,10 +79,17 @@
     <div class="abouttextfull">
         <h1>> sudo whoami</h1>
         <p>
-            👋 Hello! I'm <span class="orange">Alessandro</span>, a <span class="orange">19-year-old</span> university student from Italy, passionate about <span class="orange">technology</span>. I chose Computer Science for its blend of <span class="orange">coding and problem-solving</span>, and I love exploring <span class="orange">algorithms and software development</span>. <br><br>
-            Robotics is another thrill for me—I competed in <a href="https://rcjcroatia2023.eu" class="orange">RobocupJr</a>, earning <span class="orange">3rd place in Italy</span> and <span class="orange">15th in Europe</span>. <br><br>
-            I'm also a huge <span class="orange">space nerd</span>, dreaming of working with <span class="orange">SpaceX or ESA</span> as a software engineer, maybe even starting my own space company 🚀! <br><br>
-            Thanks for visiting! Let's connect and embark on this cosmic journey together. <span class="orange">Per aspera ad astra!</span> 🚀✨
+            👋 Hello! I'm <span class="orange">Alessandro</span>, a <span class="orange">19-year-old</span> university
+            student from Italy, passionate about <span class="orange">technology</span>. I chose Computer Science for
+            its blend of <span class="orange">coding and problem-solving</span>, and I love exploring <span
+                class="orange">algorithms and software development</span>. <br><br>
+            Robotics is another thrill for me—I competed in <a href="https://rcjcroatia2023.eu"
+                class="orange">RobocupJr</a>, earning <span class="orange">3rd place in Italy</span> and <span
+                class="orange">15th in Europe</span>. <br><br>
+            I'm also a huge <span class="orange">space nerd</span>, dreaming of working with <span class="orange">SpaceX
+                or ESA</span> as a software engineer, maybe even starting my own space company 🚀! <br><br>
+            Thanks for visiting! Let's connect and embark on this cosmic journey together. <span class="orange">Per
+                aspera ad astra!</span> 🚀✨
         </p>
     </div>
     <div class="propic">
@@ -104,10 +111,44 @@
         </div>
     </div>
 </section>
+
 <section class="experiences" id="exp">
+    <!-- Web Development Flashcards -->
     <div class="exptitle">
         <h1>My experiences and works</h1>
-        <h2>from robotics to websites</h2>
+        <h2>Web Development</h2>
+    </div>
+    <div class="flashcardcontainer">
+        <div class="card">
+            <div class="imagecontainer">
+                <img src="/static/images/hockey_website.png" alt="">
+            </div>
+            <div class="cardtitle">
+                <h1>Hockey Website</h1>
+                <h2>Web App for my hockey team built with Flask</h2>
+            </div>
+            <a href="https://www.rollinskatebari.it">
+                <button>Discover</button>
+            </a>
+        </div>
+        <!-- <div class="card">
+            <div class="imagecontainer">
+                <img src="" alt="">
+            </div>
+            <div class="cardtitle">
+                <h1>Fratres Website</h1>
+                <h2>Web App for a local charity organization</h2>
+            </div>
+            <a href="">
+                <button>Discover</button>
+            </a>
+        </div> -->
+    </div>
+
+
+    <!-- Robotics Flashcards -->
+    <div class="exptitle">
+        <h2>Robotics</h2>
     </div>
     <div class="flashcardcontainer">
         <div class="card">
@@ -119,18 +160,6 @@
                 <h2>Robotics experience with python and Lego Mindstorm EV3</h2>
             </div>
             <a href="/robocup">
-                <button>Discover</button>
-            </a>
-        </div>
-        <div class="card">
-            <div class="imagecontainer">
-                <img src="/static/images/hockey_website.png" alt="">
-            </div>
-            <div class="cardtitle">
-                <h1>Hockey Website</h1>
-                <h2>Web App for my hockey team built with Flask</h2>
-            </div>
-            <a href="https://www.rollinskatebari.it">
                 <button>Discover</button>
             </a>
         </div>
@@ -158,6 +187,13 @@
                 <button>Discover</button>
             </a>
         </div>
+    </div>
+
+    <!-- Other Flashcards -->
+    <div class="exptitle">
+        <h2>Other</h2>
+    </div>
+    <div class="flashcardcontainer">
         <div class="card">
             <div class="imagecontainer">
                 <img src="/static/images/attestato.png" alt="">

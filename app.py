@@ -81,9 +81,9 @@ def index():
 def pages():
     return redirect("/")
 
-@app.route("/astro")
-def astro():
-    return render_template("astro.html")
+# @app.route("/astro")
+# def astro():
+#     return render_template("astro.html")
 
 @app.route("/robocup")
 def robocup():
@@ -225,7 +225,7 @@ def attestatoArbitro():
 
 
 
-@app.route("/galleria")
+@app.route("/astro")
 def galleria_foto():
     # Costruisci il folder name su Cloudinary
     tag_name = "astroGallery"
@@ -243,12 +243,11 @@ def galleria_foto():
         foto = []
         for resource in result.get('resources', []):
             print(f"  - {resource['public_id']}")
-            # URL thumbnail (bassa risoluzione)
+            # URL thumbnail (risoluzione ottimizzata per le colonne)
             thumbnail_url = cloudinary.CloudinaryImage(resource['public_id']).build_url(
-                width=300,
-                height=300,
-                crop="fill",
-                quality="auto:low"
+                width=600,
+                crop="scale",
+                quality="auto"
             )
             
             # URL full size (alta risoluzione)
