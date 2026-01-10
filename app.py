@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, g, send_file
+from flask import Flask, redirect, render_template, g, send_file, send_from_directory
 from flask_session import Session
 from flask_apscheduler import APScheduler
 import sqlite3
@@ -334,3 +334,8 @@ def galleria_foto():
         foto = []
     
     return render_template("astro.html", foto=foto)
+
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory("static", "sitemap.xml", mimetype="application/xml")
