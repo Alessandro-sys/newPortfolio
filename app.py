@@ -1,5 +1,6 @@
-from flask import Flask, redirect, render_template, g, send_file
+from flask import Flask, redirect, render_template, g, send_file, send_from_directory
 from flask_session import Session
+from flask_apscheduler import APScheduler
 import sqlite3
 from datetime import datetime, timedelta
 from string import Template
@@ -9,11 +10,30 @@ import cloudinary.api
 from cloudinary.utils import cloudinary_url
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
+
+# Configure Cloudinary
+# Prefer CLOUDINARY_URL if available, otherwise use individual keys
+if not os.getenv("CLOUDINARY_URL"):
+    cloudinary.config(
+        cloud_name = os.getenv("CLOUDINARY_CLOUD_NAME"),
+        api_key = os.getenv("CLOUDINARY_API_KEY"),
+        api_secret = os.getenv("CLOUDINARY_API_SECRET")
+    )
 
 from helpers import sendNewEmail, format_logs
 
 app = Flask(__name__)
+
+DATABASE = "data.db"
+
+# Configura scheduler
+scheduler = APScheduler()
+
+app.config['SCHEDULER_API_ENABLED'] = True
+scheduler.init_app(app)
+scheduler.start()
 
 me = 'chiarulli14@gmail.com'
 
@@ -21,14 +41,70 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-cloudinary.config(
-    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    api_key=os.environ.get('CLOUDINARY_API_KEY'),
-    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
-)
 
-DATABASE = "data.db"
-#DATABASE = "/home/astroale/mysite/data.db"
+# ... (rest of configuration for Cloudinary, DB, etc.)
+
+def scheduled_email_job():
+    """Funzione eseguita automaticamente ogni giorno alle 20:00"""
+    print("⏳ Esecuzione job invio email automatico...")
+    try:
+        # Nota: Qui non possiamo usare get_db() o g.db perché siamo fuori dal contesto della richiesta
+        # Creiamo una nuova connessione
+        with sqlite3.connect(DATABASE) as conn:
+            cursor = conn.cursor()
+            
+            # Calcolo date
+            today = datetime.now().date()
+            yesterday = today - timedelta(days=1)
+            
+            # Periodo: Ieri 20:01 -> Oggi 20:00
+            start_datetime = datetime.combine(yesterday, datetime.strptime("20:01:00", "%H:%M:%S").time())
+            end_datetime = datetime.combine(today, datetime.strptime("20:00:00", "%H:%M:%S").time())
+            
+            cursor.execute("""
+                SELECT platform, COUNT(*)
+                FROM access_log
+                WHERE (date > ? OR (date = ? AND time >= ?))
+                  AND (date < ? OR (date = ? AND time <= ?))
+                GROUP BY platform
+            """, (
+                yesterday.strftime('%Y-%m-%d'), yesterday.strftime('%Y-%m-%d'), "20:01:00",
+                today.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d'), "20:00:00"
+            ))
+            
+            results = cursor.fetchall()
+            counts = {"instagram": 0, "full_link": 0}
+            for platform, count in results:
+                if platform in counts:
+                    counts[platform] = count
+            
+            # Aggiornamento daily_access
+            cursor.execute("SELECT 1 FROM daily_access WHERE date = ?", (today.strftime('%Y-%m-%d'),))
+            if cursor.fetchone() is None:
+                cursor.execute(
+                    "INSERT INTO daily_access (date, instagram, full_link) VALUES (?, ?, ?)",
+                    (today.strftime('%Y-%m-%d'), counts["instagram"], counts["full_link"])
+                )
+                conn.commit()
+
+            # Invio Email
+            sendNewEmail(
+                subject=f"Report AUTOMATICO {start_datetime.strftime('%d/%m')} - {end_datetime.strftime('%d/%m')}",
+                body=counts,
+                sender=me,
+                recipients=[me]
+            )
+            print("✅ Email automatica inviata con successo.")
+            
+    except Exception as e:
+        print(f"❌ Errore durante il job automatico: {e}")
+
+
+@scheduler.task('cron', id='daily_email', hour=20, minute=0)
+def daily_email_task():
+    with app.app_context():
+        scheduled_email_job()
+
 
 def get_db():
     if 'db' not in g:
@@ -81,9 +157,9 @@ def index():
 def pages():
     return redirect("/")
 
-@app.route("/astro")
-def astro():
-    return render_template("astro.html")
+# @app.route("/astro")
+# def astro():
+#     return render_template("astro.html")
 
 @app.route("/robocup")
 def robocup():
@@ -225,7 +301,7 @@ def attestatoArbitro():
 
 
 
-@app.route("/galleria")
+@app.route("/astro")
 def galleria_foto():
     # Costruisci il folder name su Cloudinary
     tag_name = "astroGallery"
@@ -243,12 +319,11 @@ def galleria_foto():
         foto = []
         for resource in result.get('resources', []):
             print(f"  - {resource['public_id']}")
-            # URL thumbnail (bassa risoluzione)
+            # URL thumbnail (risoluzione ottimizzata per le colonne)
             thumbnail_url = cloudinary.CloudinaryImage(resource['public_id']).build_url(
-                width=300,
-                height=300,
-                crop="fill",
-                quality="auto:low"
+                width=600,
+                crop="scale",
+                quality="auto"
             )
             
             # URL full size (alta risoluzione)
@@ -268,3 +343,8 @@ def galleria_foto():
         foto = []
     
     return render_template("astro.html", foto=foto)
+
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory("static", "sitemap.xml", mimetype="application/xml")

@@ -2,74 +2,74 @@
 
 
 {% block title %}
-    <title>Astroale | Gallery</title>
+<title>Astroale | Gallery</title>
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="/static/css/astro.css">
+<link rel="stylesheet" href="/static/css/astro.css">
 {% endblock %}
 
 {% block logo %}
-    <link rel="icon" href="/static/images/Loghi/websiteLogo.png" type="image/icon type">
+<link rel="icon" href="/static/images/Loghi/websiteLogo.png" type="image/icon type">
 {% endblock %}
 
 {% block script %}
-    <script type="text/javascript" src="/static/js/astro.js" defer></script>
-    <script>
-        // Dati foto passati dal server
-        const foto = {{ foto|tojson }};
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const gallery = document.getElementById('photo-gallery');
-            const modal = document.getElementById('modal');
-            const modalImg = document.getElementById('modal-img');
-            const closeBtn = document.querySelector('.close');
-            
-            // Carica le thumbnail nella galleria
-            foto.forEach((photo, index) => {
-                const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
-                photoItem.dataset.index = index;
-                
-                const img = document.createElement('img');
-                img.src = photo.thumbnail;
-                img.alt = 'Foto partita';
-                img.loading = 'lazy';
-                
-                photoItem.appendChild(img);
-                gallery.appendChild(photoItem);
-                
-                // Click per aprire modal con immagine full size
-                photoItem.addEventListener('click', function() {
-                    modal.style.display = 'block';
-                    modalImg.src = photo.url;
-                });
-            });
-            
-            // Chiudi modal
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-            
-            // Chiudi cliccando fuori dall'immagine
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            
-            // Chiudi con ESC
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.style.display === 'block') {
-                    modal.style.display = 'none';
-                }
+<script type="text/javascript" src="/static/js/astro.js" defer></script>
+<script>
+    // Dati foto passati dal server
+    const foto = {{ foto| tojson }};
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const gallery = document.getElementById('photo-gallery');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.querySelector('.close');
+
+        // Carica le thumbnail nella galleria
+        foto.forEach((photo, index) => {
+            const photoItem = document.createElement('div');
+            photoItem.className = 'photo-item';
+            photoItem.dataset.index = index;
+
+            const img = document.createElement('img');
+            img.src = photo.thumbnail;
+            img.alt = 'Foto partita';
+            img.loading = 'lazy';
+
+            photoItem.appendChild(img);
+            gallery.appendChild(photoItem);
+
+            // Click per aprire modal con immagine full size
+            photoItem.addEventListener('click', function () {
+                modal.style.display = 'block';
+                modalImg.src = photo.url;
             });
         });
-    </script>
+
+        // Chiudi modal
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Chiudi cliccando fuori dall'immagine
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Chiudi con ESC
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>
 {% endblock %}
 
 {% block body %}
-    <!--
+<!--
     <div class="menubar">
         <a href="#"><img src="index_content/logosolo.png" alt=""></a>
         <div class="menubarcontainer">
@@ -78,121 +78,54 @@
         </div>  
     </div>
     -->
-    <div class="menubar">
-        <a href="/"><img src="/static/images/Loghi/astroaleBlackLogo.png" alt=""></a>
-        <div class="menubarcontainer">
-            <a href="#title" class="nav-link">Home</a>
-            <a href="#gallery" class="nav-link">Gallery</a>
-        </div>
+<div class="menubar">
+    <a href="/"><img src="/static/images/Loghi/astroaleBlackLogo.png" alt=""></a>
+    <div class="menubarcontainer">
+        <a href="#title" class="nav-link">Home</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
     </div>
+</div>
 
-    <section class="title" id="title">
-        <h1 class="mainTitle">AstroAle AstroPhotography Gallery</h1>
-        <h3 class="subtitle">SkyWatcher 130/900 f6.9</h3>
-        <h3 class="subtitle">5mm, 25mm eyepieces - 2x barlow</h3>
-        <h3 class="subtitle">Iphone13 Camera - 1080p webcam</h3>
-        <div class="socials">
-            <a href="https://www.instagram.com/astroale_/">
-                <img src="/static/images/Loghi/Instagram.png" alt="Instagram Logo">
-            </a>
-            <a href="https://x.com/Aleexe26981598">
-                <img src="/static/images/Loghi/X.png" alt="X Logo">
-            </a>
-            <a href="https://github.com/Alessandro-sys">
-                <img src="/static/images/Loghi/GitHub.png" alt="GitHub Logo">
-            </a>
-        </div>
-        <div class="explore">
-            <a href="#gallery">
-                <button>Explore</button>
-            </a>
-        </div>
-    </section>
-
-    <div class="container"> 
-        {% if foto %}
-        <div id="photo-gallery" class="photo-gallery">
-            <!-- Le foto saranno caricate qui dal JavaScript -->
-        </div>
-        {% else %}
-        <div class="no-photos">
-            <p>Nessuna foto disponibile per questa partita</p>
-        </div>
-        {% endif %}
+<section class="title" id="title">
+    <h1 class="mainTitle">AstroAle AstroPhotography Gallery</h1>
+    <h3 class="subtitle">SkyWatcher 130/900 f6.9</h3>
+    <h3 class="subtitle">5mm, 25mm eyepieces - 2x barlow</h3>
+    <h3 class="subtitle">Iphone13 Camera - 1080p webcam</h3>
+    <div class="socials">
+        <a href="https://www.instagram.com/astroale_/">
+            <img src="/static/images/Loghi/Instagram.png" alt="Instagram Logo">
+        </a>
+        <a href="https://x.com/Aleexe26981598">
+            <img src="/static/images/Loghi/X.png" alt="X Logo">
+        </a>
+        <a href="https://github.com/Alessandro-sys">
+            <img src="/static/images/Loghi/GitHub.png" alt="GitHub Logo">
+        </a>
     </div>
-
-    <!-- Modal per immagine full size -->
-    <div id="modal" class="modal">
-        <span class="close">&times;</span>
-        <div class="modal-content">
-            <img id="modal-img" src="" alt="Foto full size">
-        </div>
+    <div class="explore">
+        <a href="#gallery">
+            <button>Explore</button>
+        </a>
     </div>
+</section>
 
-    <!-- <section class="container" id="gallery">
-        
-        <div class="photo-gallery">
+<div class="container" id="gallery">
+    {% if foto %}
+    <div id="photo-gallery" class="photo-gallery">
+        <!-- Le foto saranno caricate qui dal JavaScript -->
+    </div>
+    {% else %}
+    <div class="no-photos">
+        <p>Nessuna foto disponibile per questa partita</p>
+    </div>
+    {% endif %}
+</div>
 
-            <div class="column">
-
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/2.JPG" alt="MoonMosaic">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/1.JPG" alt="lunaArancio">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/3.PNG" alt="LunaRosa">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/7.JPG" alt="BabboNatale">
-                </div>
-            </div>
-
-            <div class="column">
-
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/11.jpg" alt="ToenailMoon">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/12.jpg" alt="Mineral">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/14.jpg" alt="Fasi">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/4.jpg" alt="Saturno1">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/10.PNG" alt="Saturno2">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/16.PNG" alt="Saturno3">
-                </div>
-            </div>
-
-            <div class="column">
-
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/13.jpg" alt="ISS">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/6.JPG" alt="">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/8.PNG" alt="">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/9.JPG" alt="">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/15.PNG" alt="">
-                </div>
-                <div class="photo">
-                    <img src="/static/images/galleryPhotos/5.jpg" alt="Giove1">
-                </div>
-                
-            </div>
-        </div>
-    </div> -->
+<!-- Modal per immagine full size -->
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+        <img id="modal-img" src="" alt="Foto full size">
+    </div>
+</div>
 {% endblock %}
