@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, g, send_file, send_from_directory
+from flask import Flask, redirect, render_template, g, send_file, send_from_directory, request
 from flask_session import Session
 from flask_apscheduler import APScheduler
 import sqlite3
@@ -11,7 +11,7 @@ from cloudinary.utils import cloudinary_url
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # Configure Cloudinary
 # Prefer CLOUDINARY_URL if available, otherwise use individual keys
@@ -26,14 +26,22 @@ from helpers import sendNewEmail, format_logs
 
 app = Flask(__name__)
 
-DATABASE = "data.db"
+@app.before_request
+def redirect_to_www():
+    host = request.headers.get("Host", "")
+    if host == "astroale.com":
+        return redirect("https://www.astroale.com" + request.full_path, code=301)
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE = os.path.join(BASE_DIR, "data.db")
 
 # Configura scheduler
-scheduler = APScheduler()
+#scheduler = APScheduler()
 
-app.config['SCHEDULER_API_ENABLED'] = True
-scheduler.init_app(app)
-scheduler.start()
+# app.config['SCHEDULER_API_ENABLED'] = True
+# scheduler.init_app(app)
+# scheduler.start()
 
 me = 'chiarulli14@gmail.com'
 
@@ -42,68 +50,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-# ... (rest of configuration for Cloudinary, DB, etc.)
-
-def scheduled_email_job():
-    """Funzione eseguita automaticamente ogni giorno alle 20:00"""
-    print("⏳ Esecuzione job invio email automatico...")
-    try:
-        # Nota: Qui non possiamo usare get_db() o g.db perché siamo fuori dal contesto della richiesta
-        # Creiamo una nuova connessione
-        with sqlite3.connect(DATABASE) as conn:
-            cursor = conn.cursor()
-            
-            # Calcolo date
-            today = datetime.now().date()
-            yesterday = today - timedelta(days=1)
-            
-            # Periodo: Ieri 20:01 -> Oggi 20:00
-            start_datetime = datetime.combine(yesterday, datetime.strptime("20:01:00", "%H:%M:%S").time())
-            end_datetime = datetime.combine(today, datetime.strptime("20:00:00", "%H:%M:%S").time())
-            
-            cursor.execute("""
-                SELECT platform, COUNT(*)
-                FROM access_log
-                WHERE (date > ? OR (date = ? AND time >= ?))
-                  AND (date < ? OR (date = ? AND time <= ?))
-                GROUP BY platform
-            """, (
-                yesterday.strftime('%Y-%m-%d'), yesterday.strftime('%Y-%m-%d'), "20:01:00",
-                today.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d'), "20:00:00"
-            ))
-            
-            results = cursor.fetchall()
-            counts = {"instagram": 0, "full_link": 0}
-            for platform, count in results:
-                if platform in counts:
-                    counts[platform] = count
-            
-            # Aggiornamento daily_access
-            cursor.execute("SELECT 1 FROM daily_access WHERE date = ?", (today.strftime('%Y-%m-%d'),))
-            if cursor.fetchone() is None:
-                cursor.execute(
-                    "INSERT INTO daily_access (date, instagram, full_link) VALUES (?, ?, ?)",
-                    (today.strftime('%Y-%m-%d'), counts["instagram"], counts["full_link"])
-                )
-                conn.commit()
-
-            # Invio Email
-            sendNewEmail(
-                subject=f"Report AUTOMATICO {start_datetime.strftime('%d/%m')} - {end_datetime.strftime('%d/%m')}",
-                body=counts,
-                sender=me,
-                recipients=[me]
-            )
-            print("✅ Email automatica inviata con successo.")
-            
-    except Exception as e:
-        print(f"❌ Errore durante il job automatico: {e}")
-
-
-@scheduler.task('cron', id='daily_email', hour=20, minute=0)
-def daily_email_task():
-    with app.app_context():
-        scheduled_email_job()
 
 
 def get_db():
@@ -240,55 +186,55 @@ def update_daily_access(date, instagram_count, full_link_count):
         )
         db.commit()
 
-@app.route("/sendEmail")
-def sendEmail():
-    db = get_db()
-    cursor = db.cursor()
+# @app.route("/sendEmail")
+# def sendEmail():
+#     db = get_db()
+#     cursor = db.cursor()
 
-    today = datetime.now().date()
-    yesterday = today - timedelta(days=1)
-    start_datetime = datetime.combine(yesterday, datetime.strptime("18:01:00", "%H:%M:%S").time())
-    end_datetime = datetime.combine(today, datetime.strptime("18:00:00", "%H:%M:%S").time())
+#     today = datetime.now().date()
+#     yesterday = today - timedelta(days=1)
+#     start_datetime = datetime.combine(yesterday, datetime.strptime("18:01:00", "%H:%M:%S").time())
+#     end_datetime = datetime.combine(today, datetime.strptime("18:00:00", "%H:%M:%S").time())
 
-    start_datetime_display = start_datetime + timedelta(hours=2)
-    end_datetime_display = end_datetime + timedelta(hours=2)
+#     start_datetime_display = start_datetime + timedelta(hours=2)
+#     end_datetime_display = end_datetime + timedelta(hours=2)
 
-    cursor.execute("""
-        SELECT platform, COUNT(*)
-        FROM access_log
-        WHERE (date > ? OR (date = ? AND time >= ?))
-          AND (date < ? OR (date = ? AND time <= ?))
-        GROUP BY platform
-    """, (
-        yesterday.strftime('%Y-%m-%d'), yesterday.strftime('%Y-%m-%d'), "18:01:00",
-        today.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d'), "18:00:00"
-    ))
-    results = cursor.fetchall()
+#     cursor.execute("""
+#         SELECT platform, COUNT(*)
+#         FROM access_log
+#         WHERE (date > ? OR (date = ? AND time >= ?))
+#           AND (date < ? OR (date = ? AND time <= ?))
+#         GROUP BY platform
+#     """, (
+#         yesterday.strftime('%Y-%m-%d'), yesterday.strftime('%Y-%m-%d'), "18:01:00",
+#         today.strftime('%Y-%m-%d'), today.strftime('%Y-%m-%d'), "18:00:00"
+#     ))
+#     results = cursor.fetchall()
 
-    counts = {"instagram": 0, "full_link": 0}
-    for platform, count in results:
-        if platform in counts:
-            counts[platform] = count
+#     counts = {"instagram": 0, "full_link": 0}
+#     for platform, count in results:
+#         if platform in counts:
+#             counts[platform] = count
 
-    # Aggiorna la tabella daily_access
-    update_daily_access(
-        today.strftime('%Y-%m-%d'),
-        counts["instagram"],
-        counts["full_link"]
-    )
+#     # Aggiorna la tabella daily_access
+#     update_daily_access(
+#         today.strftime('%Y-%m-%d'),
+#         counts["instagram"],
+#         counts["full_link"]
+#     )
 
-    sendNewEmail(
-        subject=f"Report accessi dalle {start_datetime_display.strftime('%d/%m/%Y %H:%M')} alle {end_datetime_display.strftime('%d/%m/%Y %H:%M')}",
-        body=counts,
-        sender=me,
-        recipients=[me]
-    )
+#     sendNewEmail(
+#         subject=f"Report accessi dalle {start_datetime_display.strftime('%d/%m/%Y %H:%M')} alle {end_datetime_display.strftime('%d/%m/%Y %H:%M')}",
+#         body=counts,
+#         sender=me,
+#         recipients=[me]
+#     )
 
-    return (
-        f"Email inviata:<br>"
-        f"Periodo: {start_datetime_display.strftime('%d/%m/%Y %H:%M')} - {end_datetime_display.strftime('%d/%m/%Y %H:%M')}<br>"
-        f"Instagram: {counts['instagram']}<br>Full Link: {counts['full_link']}"
-    )
+#     return (
+#         f"Email inviata:<br>"
+#         f"Periodo: {start_datetime_display.strftime('%d/%m/%Y %H:%M')} - {end_datetime_display.strftime('%d/%m/%Y %H:%M')}<br>"
+#         f"Instagram: {counts['instagram']}<br>Full Link: {counts['full_link']}"
+#     )
 
 
 @app.route("/attestatoArbitro")
