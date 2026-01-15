@@ -11,6 +11,8 @@ from cloudinary.utils import cloudinary_url
 import os
 from dotenv import load_dotenv
 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # Configure Cloudinary
@@ -33,7 +35,7 @@ def redirect_to_www():
         return redirect("https://www.astroale.com" + request.full_path, code=301)
 
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 DATABASE = os.path.join(BASE_DIR, "data.db")
 
 # Configura scheduler
