@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, g, send_file, send_from_directory, request
+from flask import Flask, redirect, render_template, g, send_file, send_from_directory, request, session
 from flask_session import Session
 from flask_apscheduler import APScheduler
 import sqlite3
@@ -251,30 +251,32 @@ def attestatoArbitro():
 
 @app.route("/astro")
 def galleria_foto():
-    # Costruisci il folder name su Cloudinary
     tag_name = "astroGallery"
-
+    filter_tag = request.args.get("tag")
     
-    # Recupera foto da Cloudinary
     try:
+        # Recupera foto da Cloudinary includendo i tag per il filtraggio
         result = cloudinary.api.resources_by_tag(
             tag_name,
-            max_results=500
+            max_results=500,
+            tags=True
         )
-        print(result)
-    
         
         foto = []
         for resource in result.get('resources', []):
-            print(f"  - {resource['public_id']}")
-            # URL thumbnail (risoluzione ottimizzata per le colonne)
+            tags = resource.get('tags', [])
+            
+            # Se è specificato un tag, saltiamo l'immagine se non contiene il tag (case-insensitive)
+            if filter_tag:
+                if filter_tag.lower() not in [t.lower() for t in tags]:
+                    continue
+            
             thumbnail_url = cloudinary.CloudinaryImage(resource['public_id']).build_url(
                 width=600,
                 crop="scale",
                 quality="auto"
             )
             
-            # URL full size (alta risoluzione)
             full_url = cloudinary.CloudinaryImage(resource['public_id']).build_url(
                 quality="auto:best"
             )
@@ -290,7 +292,124 @@ def galleria_foto():
         traceback.print_exc()
         foto = []
     
-    return render_template("astro.html", foto=foto)
+    return render_template("astro.html", foto=foto, filter_tag=filter_tag)
+
+
+# --- ROTTE AMMINISTRATIVE PER GESTIONE GALLERIA ---
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        password = request.form.get("password")
+        correct_password = os.getenv("ADMIN_PASSWORD", "astroale2026")
+        if password == correct_password:
+            session['admin_logged_in'] = True
+            return redirect("/admin")
+        else:
+            return render_template("admin_login.html", error="Password errata!")
+    return render_template("admin_login.html")
+
+
+@app.route("/admin/logout")
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect("/admin/login")
+
+
+@app.route("/admin")
+def admin_dashboard():
+    if not session.get('admin_logged_in'):
+        return redirect("/admin/login")
+        
+    tag_name = "astroGallery"
+    try:
+        # Recupera tutte le foto caricate per visualizzarle in griglia
+        result = cloudinary.api.resources_by_tag(
+            tag_name,
+            max_results=500,
+            tags=True
+        )
+        foto = []
+        for resource in result.get('resources', []):
+            tags = resource.get('tags', [])
+            # Rimuove il tag base per mostrare solo i tag inseriti dall'utente
+            user_tags = [t for t in tags if t != "astroGallery"]
+            foto.append({
+                "public_id": resource['public_id'],
+                "thumbnail": cloudinary.CloudinaryImage(resource['public_id']).build_url(
+                    width=150,
+                    height=150,
+                    crop="fill"
+                ),
+                "tags": ", ".join(user_tags)
+            })
+    except Exception as e:
+        print(f"✗ Errore recupero foto per dashboard: {e}")
+        foto = []
+        
+    return render_template("admin.html", foto=foto)
+
+
+@app.route("/admin/upload", methods=["POST"])
+def admin_upload():
+    if not session.get('admin_logged_in'):
+        return redirect("/admin/login")
+        
+    file = request.files.get("file")
+    if not file:
+        return redirect("/admin")
+        
+    tags_raw = request.form.get("tags", "")
+    tags_list = [t.strip() for t in tags_raw.split(",") if t.strip()]
+    
+    # Assicurati che il tag primario "astroGallery" sia sempre presente
+    if "astroGallery" not in tags_list:
+        tags_list.append("astroGallery")
+        
+    try:
+        cloudinary.uploader.upload(file, tags=tags_list)
+        print(f"✓ Immagine caricata con tag: {tags_list}")
+    except Exception as e:
+        print(f"✗ Errore caricamento immagine: {e}")
+        
+    return redirect("/admin")
+
+
+@app.route("/admin/update_tags", methods=["POST"])
+def admin_update_tags():
+    if not session.get('admin_logged_in'):
+        return redirect("/admin/login")
+        
+    public_id = request.form.get("public_id")
+    tags_raw = request.form.get("tags", "")
+    tags_list = [t.strip() for t in tags_raw.split(",") if t.strip()]
+    
+    # Mantieni il tag primario
+    if "astroGallery" not in tags_list:
+        tags_list.append("astroGallery")
+        
+    try:
+        cloudinary.api.update(public_id, tags=tags_list)
+        print(f"✓ Tag aggiornati per {public_id}: {tags_list}")
+    except Exception as e:
+        print(f"✗ Errore aggiornamento tag: {e}")
+        
+    return redirect("/admin")
+
+
+@app.route("/admin/delete", methods=["POST"])
+def admin_delete():
+    if not session.get('admin_logged_in'):
+        return redirect("/admin/login")
+        
+    public_id = request.form.get("public_id")
+    try:
+        cloudinary.uploader.destroy(public_id)
+        print(f"✓ Risorsa eliminata da Cloudinary: {public_id}")
+    except Exception as e:
+        print(f"✗ Errore eliminazione risorsa: {e}")
+        
+    return redirect("/admin")
 
 
 @app.route("/sitemap.xml")

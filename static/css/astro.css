@@ -1,6 +1,9 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #030307;
+    color: #ffffff;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 html {
@@ -26,8 +29,10 @@ section {
     border-radius: 1rem;
     z-index: 9999;
     position: fixed;
-    background: rgba(255, 255, 255, .8);
-    /*background: rgba(0, 0, 0, 1);*/
+    background: rgba(10, 10, 20, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     box-sizing: border-box;
 }
@@ -52,9 +57,15 @@ section {
     opacity: 1;
     line-height: 50px;
     text-decoration: none;
-    color: black;
+    color: white;
     margin-left: 10px;
     margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.menubar a:hover {
+    color: #00ffcc;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
 }
 
 .nav-link.active {
@@ -65,7 +76,7 @@ section {
 
 
 .title {
-    background: rgba(34, 34, 59, 1);
+    background: #030307;
     display: grid;
     place-items: center;
     align-content: center;
@@ -74,12 +85,14 @@ section {
 }
 
 .mainTitle {
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 400;
+    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+    font-weight: 600;
     font-size: 60px;
     margin-bottom: 0;
     color: white;
     text-align: center;
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.45);
+    letter-spacing: 1px;
 }
 
 .socials {
@@ -125,29 +138,29 @@ section {
 }
 
 .explore button {
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     text-decoration: none;
-    color: rgb(20, 20, 20);
-    background-color: rgb(255, 255, 255);
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
     font-size: 15px;
     font-family: "Space Grotesk", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 500;
-    font-style: normal;
-    padding: 15px;
+    padding: 15px 30px;
     border-radius: 1rem;
-    pointer-events: unset;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
 }
 
 .explore button:hover {
-    color: rgb(50, 50, 50);
-    background-color: rgb(225, 225, 225);
-    cursor: pointer;
+    color: #ffffff;
+    background-color: rgba(0, 255, 204, 0.18);
+    border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
 }
 
 .explore button:active {
-    color: rgb(50, 50, 50);
-    background-color: rgb(225, 225, 225);
+    background-color: rgba(0, 255, 204, 0.25);
 }
 
 
