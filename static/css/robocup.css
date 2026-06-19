@@ -7,12 +7,6 @@ html{
     scroll-behavior: smooth;
 }
 
-body {
-    background-color: #030307;
-    color: white;
-    font-family: 'Space Grotesk', sans-serif;
-}
-
 
 /*------------------------------------------------------------------------------*/
 
@@ -22,10 +16,7 @@ body {
     max-width: 100%;
     z-index: 9999;
     position: fixed;
-    background: rgba(10, 10, 20, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(232, 230, 218, .8);
     display: flex;
     box-sizing: border-box;
 }
@@ -54,20 +45,15 @@ body {
 }
 
 .menubar a{
-    font-family: 'Space Grotesk', sans-serif;
-    opacity: 1;
+    font-family: 'League Spartan', sans-serif;
+
+    opacity: .8;
     line-height: 50px;
     text-decoration: none;
-    color: white;
-    font-weight: 500;
+    color: black;
+    font-weight: 600;
     margin-left: 10px;
     margin-right: 20px;
-    transition: color 0.3s ease;
-}
-
-.menubar a:hover {
-    color: #00ffcc;
-    text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
 }
 
 .sidenav {
@@ -77,24 +63,21 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(10, 10, 20, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    font-family: 'Space Grotesk', sans-serif;
+    background: rgba(232, 230, 218, .8);
+    font-family: 'League Spartan', sans-serif;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
-}
+  }
   
-.sidenav a {
+  .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: rgba(255, 255, 255, .8);
+    color: rgba(0,0,0,.8);
     display: block;
     transition: 0.3s;
-}
+  }
 
   .bandierina{
     width: 30px;
@@ -133,8 +116,7 @@ body {
     text-align: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #030307;
-    color: white;
+    background-color: white;
 }
 
 .fotorobot{
@@ -150,54 +132,33 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    opacity: 0.85;
 }
 
 .title h1{
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    color: white;
+    font-family: 'League Spartan', sans-serif;
+    color: black;
     font-size: 70px;
     padding: 0;
     margin-top: 30px;
     margin-bottom: 30px;
-    text-shadow: 0 0 15px rgba(0, 255, 204, 0.45);
 }
 
 .title h2{
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    color: #00ffcc;
+    font-family: 'League Spartan', sans-serif;
+    color: #F28705;
     font-size: 40px;
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.25);
 }
 .title a{
-    display: inline-block;
-    align-self: center;
-    width: fit-content;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    font-size: 16px;
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 500;
-    padding: 12px 24px;
-    border-radius: 0.8rem;
-    cursor: pointer;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 20px;
     margin-top: 20px;
+ 
 }
 
-.title a:hover{
-    color: #ffffff;
-    background-color: rgba(0, 255, 204, 0.18);
-    border-color: #00ffcc;
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-}
 
 .orange{
-    color: #00ffcc;
-    text-shadow: 0 0 5px rgba(0, 255, 204, 0.2);
+    color: #F28705;
 }
 
 /*------------------------------------------------------------------------------*/
@@ -209,8 +170,7 @@ body {
     flex-direction: row;
     text-align: center;
     justify-content: center;
-    background-color: #07070f; 
-    color: white;
+    background-color: white; 
 }
 
 .sectionLeftText{
@@ -223,17 +183,16 @@ body {
 }
 
 .sectionLeftText h1{
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    color: white;
+    font-family: 'League Spartan', sans-serif;
+    color: black;
     font-size: 60px;
     margin-left: 70px;
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
 }
 
 .sectionLeftText p{
-    font-family: 'Space Grotesk', sans-serif;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 18px;
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 20px;
     margin-left: 70px;
     padding: 20px 0;
 }
@@ -259,9 +218,6 @@ body {
 
 .rightImage img{
     width: 70%;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.08);
 }
 
 
@@ -275,8 +231,7 @@ body {
     flex-direction: row;
     text-align: center;
     justify-content: center;
-    background-color: #030307;
-    color: white;
+    background-color: white;
 }
 
 .sectionRightText{
@@ -286,19 +241,19 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
 }
 
 .sectionRightText h1{
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    color: white;
+    font-family: 'League Spartan', sans-serif;
+    color: black;
     font-size: 60px;
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
 }
 
 .sectionRightText p{
-    font-family: 'Space Grotesk', sans-serif;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 18px;
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+    font-size: 20px;
     margin-right: 70px;
     padding: 20px 0;
 }
@@ -326,9 +281,6 @@ body {
 
 .leftImage img{
     width: 70%;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.08);
 }
 
 

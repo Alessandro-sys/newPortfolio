@@ -33,7 +33,7 @@
 
             const img = document.createElement('img');
             img.src = photo.thumbnail;
-            img.alt = 'Foto astrofotografia';
+            img.alt = 'Foto partita';
             img.loading = 'lazy';
 
             photoItem.appendChild(img);
@@ -87,23 +87,10 @@
 </div>
 
 <section class="title" id="title">
-<<<<<<< HEAD
-    <h1 class="mainTitle">
-        {% if filter_tag %}
-            AstroGallery: {{ filter_tag }}
-        {% else %}
-            AstroAle AstroPhotography Gallery
-        {% endif %}
-    </h1>
+    <h1 class="mainTitle">AstroAle AstroPhotography Gallery</h1>
     <h3 class="subtitle">SkyWatcher 130/900 f6.9 - 5mm, 25mm eyepieces - 2x barlow</h3>
     <h3 class="subtitle">Sony α6400 - 55-210 f/4.5-6.3 lens</h3>
     <h3 class="subtitle">Iphone13 Camera</h3>
-=======
-    <h1 class="mainTitle">AstroAle AstroPhotography Gallery</h1>
-    <h3 class="subtitle">SkyWatcher 130/900 f6.9</h3>
-    <h3 class="subtitle">5mm, 25mm eyepieces - 2x barlow</h3>
-    <h3 class="subtitle">Iphone13 Camera - 1080p webcam</h3>
->>>>>>> parent of 96c0398 (Aggiornata descrizione galleria)
     <div class="socials">
         <a href="https://www.instagram.com/astroale_/">
             <img src="/static/images/Loghi/Instagram.png" alt="Instagram Logo">
@@ -129,7 +116,7 @@
     </div>
     {% else %}
     <div class="no-photos">
-        <p>Nessuna foto disponibile per questa categoria</p>
+        <p>Nessuna foto disponibile per questa partita</p>
     </div>
     {% endif %}
 </div>

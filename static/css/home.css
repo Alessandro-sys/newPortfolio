@@ -134,10 +134,10 @@ html{
 .name h1{
     color: white;
     font-size: 50px;
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-shadow: 0 0 15px rgba(0, 255, 204, 0.45);
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
 }
 
 .name h2{
@@ -183,24 +183,27 @@ html{
 
 .aboutme button{
     text-decoration: none;
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgb(20, 20, 20);
+    background-color: rgb(255,255,255);
     font-size: 15px;
     font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 500;
-    padding: 15px 30px;
+    font-style: normal;
+    padding: 15px;
     border-radius: 1rem;
-    cursor: pointer;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
+    pointer-events: unset;
 }
 
 .aboutme button:hover{
-    color: #ffffff;
-    background-color: rgba(0, 255, 204, 0.18);
-    border-color: #00ffcc;
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
+    cursor: pointer;
+}
+
+.aboutme button:active{
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
 }
 
 @media screen and (width <= 650px){
@@ -249,10 +252,10 @@ html{
 .abouttextfull h1{
     color: white;
     font-size: 50px;
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-shadow: 0 0 15px rgba(0, 255, 204, 0.45);
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
 }
 
 .abouttextfull p{
@@ -267,19 +270,14 @@ html{
 }
 
 .abouttextfull span{
-    color: #00ffcc;
-    text-shadow: 0 0 8px rgba(0, 255, 204, 0.25);
+    /*color: rgb(33, 128, 241);*/
+    color: rgb(32, 194, 14);
 }
 
 .abouttextfull a{
     cursor: pointer;
     text-decoration: underline;
-    color: #00ffcc;
-    transition: text-shadow 0.3s ease;
-}
-
-.abouttextfull a:hover {
-    text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+    color: rgb(32, 194, 14);
 }
 
 .propic{
@@ -383,453 +381,96 @@ html{
 /*  ASTROGALLERY  */
 /*#############################################################################*/
 
-.astrogallery {
-    position: relative;
-    height: 90vh;
-    background-color: #030307;
-    overflow: hidden;
+.astrogallery{
+    height: 50vh;
+    background-color: black;
+    background-image: url(/static/images/astrogallery2.PNG);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-#solar-system-container {
-    position: absolute;
-    top: 0;
-    left: 0;
+
+.blur{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+
+.astroinfo{
     width: 100%;
     height: 100%;
-    z-index: 1;
+    text-align: center;
+    display: flex;
+    align-items: center; /* Cambia align-items a flex-start per allineare a sinistra */
+    justify-content: center; /* Aggiungi justify-content per centrare verticalmente il contenuto */
+    flex-direction: column; /* Dispone gli elementi in colonna */
 }
 
-#planet-tooltip {
-    position: fixed;
-    z-index: 9999;
-    pointer-events: none;
-    background: rgba(8, 10, 20, 0.88);
-    border: 1px solid #00ffcc;
-    padding: 6px 14px;
-    border-radius: 6px;
-    color: #00ffcc;
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: opacity 0.15s ease;
-    opacity: 0;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
-    backdrop-filter: blur(5px);
-}
-
-/* Sovrapposizione HUD */
-.hud-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.astrotitle{
     width: 100%;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-sizing: border-box;
-    padding: 30px;
+    text-align: center;
 }
 
-.hud-header {
-    pointer-events: auto;
-    text-align: left;
-    max-width: 500px;
+.astrotitle h1{
+    color: white;
+    font-size: 50px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
 }
 
-.hud-header h1 {
-    color: #ffffff;
-    font-size: 32px;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+.astrotitle h2{
+    padding-top: 5px;
+    color: white;
+    font-size: 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
 }
 
-.hud-header p {
-    color: rgba(255, 255, 255, 0.7);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px;
-    margin-top: 6px;
-    line-height: 1.4;
+.astrobutton{
+    width: 100%;
+    text-align: center;
+    padding-top: 15px;
 }
 
-.hud-controls {
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    background: rgba(10, 10, 20, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 1.2rem;
-    padding: 12px 24px;
-    width: fit-content;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.hud-control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-right: 8px;
-}
-
-.hud-label {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 11px;
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 0.5px;
-}
-
-#speed-value {
-    color: #00ffcc;
-    font-weight: bold;
-}
-
-input[type="range"]#speed-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 110px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-    outline: none;
-}
-
-input[type="range"]#speed-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #00ffcc;
-    cursor: pointer;
-    box-shadow: 0 0 6px #00ffcc;
-    transition: transform 0.15s;
-}
-
-input[type="range"]#speed-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-}
-
-.hud-btn {
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.07);
-    color: #ffffff;
-    font-family: 'Space Grotesk', sans-serif;
-    padding: 10px 18px;
-    border-radius: 0.8rem;
-    font-size: 13px;
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hud-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
-}
-
-.hud-btn:active {
-    transform: translateY(0);
-}
-
-.hud-btn.off {
-    background: rgba(255, 80, 80, 0.08);
-    border-color: rgba(255, 80, 80, 0.3);
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.hud-btn.glow-btn {
-    border-color: #00ffcc;
-    background: rgba(0, 255, 204, 0.08);
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
-    font-weight: 600;
-}
-
-.hud-btn.glow-btn:hover {
-    background: rgba(0, 255, 204, 0.18);
-    border-color: #00ffcc;
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-}
-
-.hud-explore-link {
+.astrobutton button{
     text-decoration: none;
-}
-
-/* Pannello Informativo Laterale */
-.hud-panel {
-    position: absolute;
-    right: -380px;
-    top: 30px;
-    bottom: 30px;
-    width: 340px;
-    background: rgba(10, 11, 20, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 3px solid #00ffcc;
-    border-radius: 1.2rem;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 24px;
-    box-sizing: border-box;
-    color: #ffffff;
-    pointer-events: auto;
-    display: flex;
-    flex-direction: column;
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
-    transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 20;
-}
-
-.hud-panel.active {
-    right: 30px;
-}
-
-.hud-panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-}
-
-.hud-panel-header h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 24px;
-    color: #00ffcc;
-    text-shadow: 0 0 8px rgba(0, 255, 204, 0.3);
-}
-
-.hud-status-indicator {
-    font-size: 9px;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    color: #00ffcc;
-    border: 1px solid #00ffcc;
-    background: rgba(0, 255, 204, 0.12);
-    padding: 2px 6px;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    animation: pulseGlow 2s infinite alternate;
-}
-
-.hud-panel-body {
-    overflow-y: auto;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.hud-panel-body::-webkit-scrollbar {
-    width: 4px;
-}
-
-.hud-panel-body::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 2px;
-}
-
-#hud-planet-desc {
-    font-size: 14px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.hud-details-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 12px 16px;
-    border-radius: 0.8rem;
-}
-
-.hud-detail-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    padding-bottom: 8px;
-}
-
-.hud-detail-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.hud-detail-label {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.hud-detail-val {
-    font-size: 13px;
-    color: #ffffff;
+    color: rgb(20, 20, 20);
+    background-color: rgb(255,255,255);
+    font-size: 15px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 500;
+    font-style: normal;
+    padding: 15px;
+    border-radius: 1rem;
+    pointer-events: unset;
 }
 
-.hud-astro-notes {
-    background: rgba(0, 255, 204, 0.04);
-    border: 1px solid rgba(0, 255, 204, 0.12);
-    border-radius: 0.8rem;
-    padding: 14px;
+.astrobutton button:hover{
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
+    cursor: pointer;
 }
 
-.hud-astro-notes h4 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 12px;
-    color: #00ffcc;
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
+.astrobutton button:active{
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
 }
 
-.hud-astro-notes p {
-    font-size: 13px;
-    line-height: 1.45;
-    color: rgba(255, 255, 255, 0.8);
-    font-style: italic;
-}
 
-@keyframes pulseGlow {
-    0% { opacity: 0.6; box-shadow: 0 0 2px rgba(0, 255, 204, 0.1); }
-    100% { opacity: 1; box-shadow: 0 0 8px rgba(0, 255, 204, 0.4); }
-}
-
-/* Responsive Design */
-@media screen and (max-width: 900px) {
-    .astrogallery {
-        height: 85vh;
-    }
-    
-    .hud-overlay {
-        padding: 15px;
-    }
-    
-    .hud-header h1 {
-        font-size: 24px;
-    }
-    
-    .hud-header p {
-        font-size: 12px;
-    }
-    
-    .hud-controls {
-        gap: 10px;
-        padding: 10px 16px;
-        width: calc(100% - 20px);
-        justify-content: space-between;
-        border-radius: 0.8rem;
-    }
-    
-    .hud-btn {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-    
-    .hud-panel {
-        width: calc(100% - 30px);
-        right: -100%;
-        left: 15px;
-        top: auto;
-        bottom: 85px;
-        height: 250px;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
-        border-top: 3px solid #00ffcc;
-        box-shadow: 0 -8px 24px rgba(0,0,0,0.3);
-        transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-        padding: 16px;
-    }
-    
-    .hud-panel.active {
-        right: 15px;
-        bottom: 85px;
-    }
-    
-    .hud-panel-header {
-        padding-bottom: 8px;
-        margin-bottom: 10px;
-    }
-    
-    .hud-panel-header h2 {
-        font-size: 18px;
-    }
-    
-    .hud-details-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        padding: 8px 12px;
-    }
-    
-    .hud-detail-item {
-        flex-direction: column;
-        align-items: flex-start;
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-    
-    .hud-detail-label {
-        font-size: 9px;
-    }
-    
-    .hud-detail-val {
-        font-size: 11px;
-    }
-    
-    .hud-astro-notes {
-        padding: 8px 12px;
-    }
-    
-    input[type="range"]#speed-slider {
-        width: 80px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .hud-controls {
-        flex-direction: column;
-        align-items: stretch;
-        width: calc(100% - 30px);
-        box-sizing: border-box;
-    }
-    
-    .hud-control-group {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-right: 0;
-    }
-    
-    .hud-panel {
-        bottom: 175px;
-        height: 260px;
-    }
-    
-    .hud-panel.active {
-        bottom: 175px;
-    }
-    
-    .hud-details-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .hud-detail-item {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+@media screen and (width < 500px) {
+    .astrotitle h1{
+        font-size: 30px;
+    }  
+    .astroinfo h2{
+        font-size: 15px;
+    } 
 }
 
 
@@ -853,10 +494,10 @@ input[type="range"]#speed-slider::-webkit-slider-thumb:hover {
 .exptitle h1{
     color: white;
     font-size: 50px;
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-shadow: 0 0 15px rgba(0, 255, 204, 0.45);
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
 }
 
 .exptitle h2{
@@ -880,21 +521,12 @@ input[type="range"]#speed-slider::-webkit-slider-thumb:hover {
 .card{
     width: 250px;
     height: 370px;
-    background-color: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(5px);
+    background-color: rgb(240, 240, 240);
     margin-left: 25px; margin-right: 25px;
     margin-top: 25px; margin-bottom: 25px;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.card:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 255, 204, 0.15);
-    border-color: rgba(0, 255, 204, 0.3);
 }
 
 .imagecontainer{
@@ -919,19 +551,23 @@ input[type="range"]#speed-slider::-webkit-slider-thumb:hover {
 }
 
 .cardtitle h1{
-    color: white;
-    font-size: 23px;
-    font-family: 'Orbitron', 'Space Grotesk', sans-serif;
-    font-weight: 500;
+    color: black;
+    font-size: 25px;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
     margin-top: 20px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
 .cardtitle h2{
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
+    color: black;
+    font-size: 15px;
     font-family: "Space Grotesk", sans-serif;
-    margin-top: 15px;
+    font-optical-sizing: auto;
+    font-weight: 418;
+    font-style: normal;
+    margin-top: 20px;
 }
 
 .card a{
@@ -944,22 +580,26 @@ input[type="range"]#speed-slider::-webkit-slider-thumb:hover {
     margin-bottom: 10px;
     width: 100%;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: rgb(20, 20, 20);
     font-family: "Space Grotesk", sans-serif;
     color: white;
+    border: none;
     border-radius: 1rem;
     cursor: pointer;
     text-align: center;
     font-size: 15px;
-    transition: all 0.3s ease;
+    pointer-events: unset;
 }
 
 .card button:hover{
-    color: #ffffff;
-    background-color: rgba(0, 255, 204, 0.15);
-    border-color: #00ffcc;
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.25);
+    color: rgb(240, 240, 240);
+    background-color: rgb(50, 50, 50);
+    cursor: pointer;
+}
+
+.card button:active{
+    color: rgb(240, 240, 240);
+    background-color: rgb(50, 50, 50);
 }
 
 
